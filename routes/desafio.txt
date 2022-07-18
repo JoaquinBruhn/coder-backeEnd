@@ -1,0 +1,26 @@
+[
+  {
+    "title": "First product",
+    "price": 15,
+    "thumbnail": "thumbnail1",
+    "id": 1
+  },
+  {
+    "title": "Globo Terraqueo",
+    "price": 4567,
+    "thumbnail": "thumbnail",
+    "id": 2
+  },
+  {
+    "title": "Hola",
+    "price": 444,
+    "thumbnail": "1234",
+    "id": 3
+  },
+  {
+    "title": "New product",
+    "price": 150,
+    "thumbnail": "thumbnail4",
+    "id": 4
+  }
+]
