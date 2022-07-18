@@ -12,8 +12,8 @@
     "id": 2
   },
   {
-    "title": "Globo Terraqueo",
-    "price": 345.67,
+    "title": "Hola",
+    "price": 444,
     "thumbnail": "1234",
     "id": 3
   }

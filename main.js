@@ -1,55 +1,32 @@
-// const http = require("http");
-
-// const server = http.createServer((peticion, respuesta) => {
-//   let time = new Date().getHours();
-//   let message = "buenos dias";
-//   if (13 <= time <= 19) message = "buenas tardes";
-//   if (20 <= time || 6 > time) message = "buenas noches";
-//   respuesta.end(message);
-// });
-
-// const connectedServer = server.listen(8080, () => {
-//   console.log(`Listening on port number ${connectedServer.address().port}`);
-// });
-
-//((((((((((((((((((((((((((()))))))))))))))))))))))))))
-
-// const express = require("express");
-// const app = express();
-
-// const PORT = 8080;
-
-// app.get("/", (req, res) => {
-//   res.send({ key: "value" });
-// });
-
-// let visitas = 0;
-// app.get("/visitas", (req, res) => {
-//   ++visitas;
-//   res.send("Visitas totales: " + visitas);
-// });
-
-// app.get("/fyh", (req, res) => {
-//   let date = new Date().toLocaleString();
-//   res.send(date);
-// });
-
-// const server = app.listen(PORT, () => {
-//   console.log(`Listening on port number ${PORT}`);
-// });
-// server.on("error", (error) => console.log(`Error on the server${error}`));
-
-//(((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((())))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
-
 const express = require("express");
 const fs = require("fs");
 const app = express();
 
 const PORT = 8080;
 
-class Contenedor {
+class Productos {
   constructor(fileName) {
     this.fileName = fileName + ".txt";
+  }
+  async getAll() {
+    try {
+      const content = await fs.promises.readFile(this.fileName, "utf-8");
+      const data = JSON.parse(content);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async getById(numb) {
+    try {
+      const content = await fs.promises.readFile(this.fileName, "utf-8");
+      const data = JSON.parse(content);
+      const product = data.find((el) => el.id == numb);
+      console.log(product);
+      return product;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async save(obj) {
@@ -72,22 +49,23 @@ class Contenedor {
       console.log(error);
     }
   }
-  async getById(numb) {
+
+  async edit(numb, newObj) {
     try {
       const content = await fs.promises.readFile(this.fileName, "utf-8");
-      const data = JSON.parse(content);
-      const product = data.find((el) => el.id == numb);
-      console.log(product);
-      return product;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  async getAll() {
-    try {
-      const content = await fs.promises.readFile(this.fileName, "utf-8");
-      const data = JSON.parse(content);
-      return data;
+      const products = JSON.parse(content);
+      const prodId = products.findIndex((prod) => prod.id == numb);
+      if (prodId < 0) {
+        throw new Error("Product does not exist");
+      }
+
+      const updatedProd = {
+        title: newObj.title ? newObj.title : products[prodId].title,
+        price: newObj.price ? newObj.price : products[prodId].price,
+        thumbnail: newObj.thumbnail ? newObj.thumbnail : products[prodId].thumbnail,
+        id: products[prodId].id,
+      };
+      console.log(updatedProd);
     } catch (error) {
       console.log(error);
     }
@@ -113,9 +91,9 @@ class Contenedor {
   }
 }
 
-const prods = new Contenedor("desafio");
+const prods = new Productos("desafio");
 
-app.get("/productos", (req, res) => {
+app.get("/products", (req, res) => {
   prods
     .getAll()
     .then((respuesta) => {
@@ -125,8 +103,18 @@ app.get("/productos", (req, res) => {
       console.log(err);
     });
 });
+app.get("/product/:id", (req, res) => {
+  prods
+    .getById(req.params.id)
+    .then((respuesta) => {
+      res.send(respuesta);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
-app.get("/productoRandom", (req, res) => {
+app.get("/productRandom", (req, res) => {
   prods
     .getAll()
     .then((allProds) => {
@@ -134,6 +122,18 @@ app.get("/productoRandom", (req, res) => {
       console.log(rdmId);
       res.send(allProds[rdmId]);
     })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+app.put("/product/:id", (req, res) => {
+  console.log(req.body);
+  prods
+    .edit(req.params.id, req.body)
+    // .then((respuesta) => {
+    //   res.send(respuesta);
+    // })
     .catch((err) => {
       console.log(err);
     });
