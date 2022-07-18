@@ -6,8 +6,9 @@ const productosRouter = require("./routes/router");
 app.use(express.static("public"));
 
 const PORT = 8080;
-
-app.use(productosRouter);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use("/api", productosRouter);
 
 const server = app.listen(PORT, () => {
   console.log(`Listening on port number ${PORT}`);

@@ -18,8 +18,8 @@
     "id": 3
   },
   {
-    "title": "New product",
-    "price": 150,
+    "title": "New",
+    "price": 15,
     "thumbnail": "thumbnail4",
     "id": 4
   }
