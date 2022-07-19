@@ -1,0 +1,49 @@
+body {
+  margin: 0px;
+  background-color: rgb(158, 230, 248);
+}
+
+nav {
+  padding: 10px 20px;
+  background-color: beige;
+}
+
+nav > * {
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: 20px auto;
+  padding: 30px;
+  border: 1px solid black;
+  background-color: rgb(219, 219, 219);
+}
+
+.addProd {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 15rem;
+  margin: 20px auto;
+}
+
+.addProd > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.addProdName {
+  padding: 4px;
+}
+
+.addProdPrice {
+  padding: 4px;
+  text-align: end;
+}
+
+.addProdThumbnail {
+  padding: 4px;
+}

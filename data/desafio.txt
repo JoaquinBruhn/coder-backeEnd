@@ -22,5 +22,11 @@
     "price": 15,
     "thumbnail": "thumbnail4",
     "id": 4
+  },
+  {
+    "title": "New2222",
+    "price": 15,
+    "thumbnail": "thumbnail4",
+    "id": 5
   }
 ]

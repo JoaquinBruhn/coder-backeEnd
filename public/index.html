@@ -4,19 +4,28 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
     <title>Document</title>
   </head>
   <body>
+    <nav>
+      <h2>Navbar</h2>
+    </nav>
     <div class="container">
       <h2>Upload a product</h2>
-      <form action="/api/productos">
-        <label>Title: </label>
-        <input type="text" name="name" />
-        <label>Price: </label>
-        <input type="number" name="price" />
-        <label>Thumbnail: </label>
-        <input type="text" name="thumbnail" />
+      <form class="addProd" action="/api/products" method="post">
+        <div>
+          <label for="name">Title: </label>
+          <input type="text" name="name" class="addProdName" required />
+        </div>
+        <div>
+          <label>Price: </label>
+          <input type="number" min="0" name="price" class="addProdPrice" required />
+        </div>
+        <div>
+          <label>Thumbnail: </label>
+          <input type="text" name="thumbnail" class="addProdThumbnail" required />
+        </div>
         <input type="submit" value="Save" />
       </form>
     </div>
