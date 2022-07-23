@@ -28,5 +28,11 @@
     "price": 15,
     "thumbnail": "thumbnail4",
     "id": 5
+  },
+  {
+    "name": "Testinggggg",
+    "price": "16545165465134",
+    "thumbnail": "Sonrrisa pa la foto",
+    "id": 6
   }
 ]
