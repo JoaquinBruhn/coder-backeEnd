@@ -29,7 +29,7 @@ app.use("/api", productosRouter);
 
 //(((((((((((((((((((( EJS ))))))))))))))))))))
 app.set("view engine", "ejs");
-app.set("views", "./public/views/");
+app.set("views", "./public/views/pages/ejs/");
 
 const server = app.listen(PORT, () => {
   console.log(`Listening on port number ${PORT}`);

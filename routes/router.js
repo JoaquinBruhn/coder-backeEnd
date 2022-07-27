@@ -10,7 +10,7 @@ const prods = new Productos("desafio");
 productosRouter.get("/products", async (req, res) => {
   try {
     const prod = await prods.getAll();
-    res.render("pages/ejs/allProducts", { prod });
+    res.render("allProducts", { prod });
   } catch (error) {
     console.log(error);
   }
@@ -18,7 +18,7 @@ productosRouter.get("/products", async (req, res) => {
 productosRouter.get("/products/:id", async (req, res) => {
   try {
     const prod = await prods.getById(req.params.id);
-    res.render("pages/ejs/products", prod);
+    res.render("products", prod);
   } catch (error) {
     console.log(error);
   }
@@ -27,7 +27,7 @@ productosRouter.get("/products/:id", async (req, res) => {
 productosRouter.post("/products", async (req, res) => {
   try {
     const prod = await prods.save(req.body);
-    res.render("pages/ejs/products", prod);
+    res.render("products", prod);
   } catch (error) {
     console.log(error);
   }
@@ -36,7 +36,7 @@ productosRouter.post("/products", async (req, res) => {
 productosRouter.put("/products/:id", async (req, res) => {
   try {
     const prod = await prods.edit(req.params.id, req.body);
-    res.render("pages/ejs/products", prod);
+    res.render("products", prod);
   } catch (error) {
     console.log(error);
   }
