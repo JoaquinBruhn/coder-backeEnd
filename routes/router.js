@@ -18,7 +18,7 @@ productosRouter.get("/products", async (req, res) => {
 productosRouter.get("/products/:id", async (req, res) => {
   try {
     const prod = await prods.getById(req.params.id);
-    res.send(prods);
+    res.send(prod);
   } catch (error) {
     console.log(error);
   }

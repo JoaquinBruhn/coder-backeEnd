@@ -24,15 +24,21 @@
     "id": 4
   },
   {
-    "title": "New2222",
-    "price": 15,
-    "thumbnail": "thumbnail4",
+    "name": "testing",
+    "price": "49846516",
+    "thumbnail": "jaja",
     "id": 5
   },
   {
-    "name": "Testinggggg",
-    "price": "16545165465134",
-    "thumbnail": "Sonrrisa pa la foto",
+    "name": "template",
+    "price": "79884",
+    "thumbnail": "adswaf",
     "id": 6
+  },
+  {
+    "name": "template",
+    "price": "79884",
+    "thumbnail": "adswaf",
+    "id": 7
   }
 ]
