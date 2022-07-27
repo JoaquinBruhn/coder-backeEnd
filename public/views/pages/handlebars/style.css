@@ -1,0 +1,36 @@
+body {
+  margin: 0px;
+  background-color: rgb(158, 230, 248);
+}
+.addedProd-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  margin: 20px auto;
+  padding: 30px;
+  border: 1px solid black;
+  background-color: rgb(219, 219, 219);
+}
+
+.addedProd-container > a {
+  margin: 10px;
+}
+
+.content-table {
+  width: 100%;
+  background-color: white;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table td,
+.content-table th {
+  border: 1px black solid;
+  padding: 20px;
+}
+
+.content-table img {
+  height: 75px;
+}

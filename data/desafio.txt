@@ -1,44 +1,38 @@
 [
   {
-    "title": "First product",
+    "title": "Car",
     "price": 15,
-    "thumbnail": "thumbnail1",
+    "thumbnail": "https://media.istockphoto.com/id/1150931120/es/foto/ilustraci%C3%B3n-3d-del-coche-blanco-compacto-gen%C3%A9rico-vista-frontal-lateral.webp?s=612x612&w=is&k=20&c=XzGv6h3_nR0r5TUwTyybdmrdTY7IHdtePdd6h-wwspc=",
     "id": 1
   },
   {
-    "title": "Globo Terraqueo",
+    "title": "Laptop",
     "price": 4567,
-    "thumbnail": "thumbnail",
+    "thumbnail": "https://media.istockphoto.com/id/1157789866/es/foto/computadora-moderna-laptop-con-pantalla-en-blanco-en-la-barra-de-mostrador-y-vista-de-ventana.webp?s=612x612&w=is&k=20&c=SzHYp303Ey2tuY4mtmG66ShYiIuRvfbsqKxZf-Y1p9E=",
     "id": 2
   },
   {
-    "title": "Hola",
+    "title": "Tree",
     "price": 444,
-    "thumbnail": "1234",
+    "thumbnail": "https://media.istockphoto.com/id/470604022/es/foto/%C3%A1rbol-de-manzano.webp?s=612x612&w=is&k=20&c=aV8JifRYM6BqA-0kj8RzrPg_z89gk1Gdk15jjJ5f5ZE=",
     "id": 3
   },
   {
-    "title": "New",
+    "title": "Helmet",
     "price": 15,
-    "thumbnail": "thumbnail4",
+    "thumbnail": "https://media.istockphoto.com/id/171326814/es/foto/casco-duro-amarillo-en-blanco-con-trazado-de-recorte.webp?s=612x612&w=is&k=20&c=YJz37TCSVWjKp-gg0a5Jn0x_2542joKYJJZtz4G6Oqc=",
     "id": 4
   },
   {
-    "name": "testing",
-    "price": "49846516",
-    "thumbnail": "jaja",
+    "title": "Microwave",
+    "price": "500",
+    "thumbnail": "https://media.istockphoto.com/id/148166172/es/foto/horno-de-microondas.webp?s=612x612&w=is&k=20&c=2V-yUOE1T2x3LSeiLXEjNYR12AC2iuU00DUVlInus-Y=",
     "id": 5
   },
   {
-    "name": "template",
-    "price": "79884",
-    "thumbnail": "adswaf",
+    "title": "Helmet",
+    "price": "15",
+    "thumbnail": "https://media.istockphoto.com/id/171326814/es/foto/casco-duro-amarillo-en-blanco-con-trazado-de-recorte.webp?s=612x612&w=is&k=20&c=YJz37TCSVWjKp-gg0a5Jn0x_2542joKYJJZtz4G6Oqc=",
     "id": 6
-  },
-  {
-    "name": "template",
-    "price": "79884",
-    "thumbnail": "adswaf",
-    "id": 7
   }
 ]

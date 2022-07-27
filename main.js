@@ -12,39 +12,27 @@ app.use("/api", productosRouter);
 //((((((((((((((((( HANDLEBARS )))))))))))))))))
 
 // app.set("view Emgine", "hbs");
-// app.set("views", "./views");
+// app.set("views", "./public/views/");
 // app.engine(
 //   "hbs",
 //   handlebars.engine({
 //     extname: ".hbs",
-//     layoutsDir: __dirname + "/public/layouts",
+//     layoutsDir: "/public/view/pages/handlebars",
+//     partialsDir: "/public/view/partials/handlebars",
 //   })
 // );
 
 //((((((((((((((((((( PUG )))))))))))))))))))
 
-// app.set("views", "./views/pug");
 // app.set("view engine", "pug");
+// app.set("views", "./public/views/");
 
 //(((((((((((((((((((( EJS ))))))))))))))))))))
-
 app.set("view engine", "ejs");
+app.set("views", "./public/views/");
 
-app.get("/pages/ejs", (req, res) => {
-  res.render("products", { title: "Tituloco" });
-});
 const server = app.listen(PORT, () => {
   console.log(`Listening on port number ${PORT}`);
 });
 
 server.on("error", (error) => console.log(`Error on the server${error}`));
-// const express = require("express");
-// const app = express();
-// app.set("view engine", "ejs");
-// app.get("/datos", (req, res) => {
-//   const { min, max, nivel, titulo } = req.query;
-//   res.render("datos", { min, max, nivel, titulo });
-// });
-// app.listen(8080, () => {
-//   console.log("Server up");
-// });
