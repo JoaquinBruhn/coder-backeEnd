@@ -11,14 +11,14 @@ app.use("/api", productosRouter);
 
 //((((((((((((((((( HANDLEBARS )))))))))))))))))
 
-// app.set("view Emgine", "hbs");
-// app.set("views", "./public/views/");
+// app.set("view engine", "hbs");
+// app.set("views", "./views/pages/handlebars/");
 // app.engine(
 //   "hbs",
 //   handlebars.engine({
 //     extname: ".hbs",
-//     layoutsDir: "/public/view/pages/handlebars",
-//     partialsDir: "/public/view/partials/handlebars",
+//     layoutsDir: __dirname + "/views/pages/handlebars",
+//     partialsDir: __dirname + "/view/partials/handlebars",
 //   })
 // );
 
@@ -29,7 +29,7 @@ app.use("/api", productosRouter);
 
 //(((((((((((((((((((( EJS ))))))))))))))))))))
 app.set("view engine", "ejs");
-app.set("views", "./public/views/pages/ejs/");
+app.set("views", "./views/pages/ejs/");
 
 const server = app.listen(PORT, () => {
   console.log(`Listening on port number ${PORT}`);
