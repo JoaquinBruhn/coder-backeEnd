@@ -11,25 +11,16 @@ app.use("/api", productosRouter);
 
 //((((((((((((((((( HANDLEBARS )))))))))))))))))
 
-// app.set("view engine", "hbs");
-// app.set("views", "./views/pages/handlebars/");
-// app.engine(
-//   "hbs",
-//   handlebars.engine({
-//     extname: ".hbs",
-//     layoutsDir: __dirname + "/views/pages/handlebars",
-//     partialsDir: __dirname + "/view/partials/handlebars",
-//   })
-// );
-
-//((((((((((((((((((( PUG )))))))))))))))))))
-
-// app.set("view engine", "pug");
-// app.set("views", "./public/views/");
-
-//(((((((((((((((((((( EJS ))))))))))))))))))))
-app.set("view engine", "ejs");
-app.set("views", "./views/pages/ejs/");
+app.set("view engine", "hbs");
+app.set("views", "./views/pages/handlebars/");
+app.engine(
+  "hbs",
+  handlebars.engine({
+    extname: ".hbs",
+    layoutsDir: __dirname + "/views/pages",
+    partialsDir: __dirname + "/view/partials",
+  })
+);
 
 const server = app.listen(PORT, () => {
   console.log(`Listening on port number ${PORT}`);
