@@ -10,7 +10,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api", productosRouter);
 
 app.set("view engine", "ejs");
-app.set("views", "./views/pages/");
+
+app.get("/", (req, res) => {
+  res.render("index");
+});
 
 const server = app.listen(PORT, () => {
   console.log(`Listening on port number ${PORT}`);
