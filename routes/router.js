@@ -1,11 +1,9 @@
 const express = require("express");
 const { Router } = express;
 
-const Productos = require("../classes/products");
+const { prods } = require("../classes/products");
 
 const productosRouter = new Router();
-
-const prods = new Productos("desafio");
 
 productosRouter.get("/products", async (req, res) => {
   try {

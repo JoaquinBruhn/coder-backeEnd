@@ -92,5 +92,8 @@ class Productos {
     }
   }
 }
+const prods = new Productos("desafio");
 
-module.exports = Productos;
+const messages = new Productos("mensajes");
+
+module.exports = { prods, messages };

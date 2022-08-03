@@ -18,21 +18,9 @@
     "id": 3
   },
   {
-    "title": "Helmet",
-    "price": 15,
-    "thumbnail": "https://media.istockphoto.com/id/171326814/es/foto/casco-duro-amarillo-en-blanco-con-trazado-de-recorte.webp?s=612x612&w=is&k=20&c=YJz37TCSVWjKp-gg0a5Jn0x_2542joKYJJZtz4G6Oqc=",
+    "title": "Lapiz",
+    "price": "45",
+    "thumbnail": "https://media.istockphoto.com/id/815950992/es/foto/l%C3%A1piz.webp?s=612x612&w=is&k=20&c=Hzj7A-P8Q1WkZvsMbNPdQXwYLEMeLzNWQyNCg1YIj0U=",
     "id": 4
-  },
-  {
-    "title": "Microwave",
-    "price": "500",
-    "thumbnail": "https://media.istockphoto.com/id/148166172/es/foto/horno-de-microondas.webp?s=612x612&w=is&k=20&c=2V-yUOE1T2x3LSeiLXEjNYR12AC2iuU00DUVlInus-Y=",
-    "id": 5
-  },
-  {
-    "title": "Helmet",
-    "price": "15",
-    "thumbnail": "https://media.istockphoto.com/id/171326814/es/foto/casco-duro-amarillo-en-blanco-con-trazado-de-recorte.webp?s=612x612&w=is&k=20&c=YJz37TCSVWjKp-gg0a5Jn0x_2542joKYJJZtz4G6Oqc=",
-    "id": 6
   }
 ]
