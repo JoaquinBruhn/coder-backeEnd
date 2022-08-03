@@ -19,7 +19,7 @@
   },
   {
     "title": "Lapiz",
-    "price": "45",
+    "price": "13",
     "thumbnail": "https://media.istockphoto.com/id/815950992/es/foto/l%C3%A1piz.webp?s=612x612&w=is&k=20&c=Hzj7A-P8Q1WkZvsMbNPdQXwYLEMeLzNWQyNCg1YIj0U=",
     "id": 4
   }

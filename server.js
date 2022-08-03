@@ -32,7 +32,7 @@ io.on("connection", async function (socket) {
   socket.on("new-message", async (message) => {
     await messages.save(message);
     chat = await messages.getAll();
-    socket.emit("chat-load", { chat });
+    io.sockets.emit("chat-load", { chat });
   });
 });
 

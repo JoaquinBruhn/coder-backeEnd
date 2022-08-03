@@ -1,32 +1,8 @@
 [
   {
-    "email": "pero@vooo",
-    "text": "sos loco vite",
-    "time": "08/03/2022 - 19:28:19",
+    "email": "test@test.com",
+    "text": "Hola",
+    "time": "08/03/2022 - 19:56:26",
     "id": 1
-  },
-  {
-    "email": "pero@vooo",
-    "text": "sos loco vite",
-    "time": "08/03/2022 - 19:28:20",
-    "id": 2
-  },
-  {
-    "email": "pero@vooo",
-    "text": "sos loco vite",
-    "time": "08/03/2022 - 19:28:20",
-    "id": 3
-  },
-  {
-    "email": "pero@vooo",
-    "text": "sos loco vite",
-    "time": "08/03/2022 - 19:28:20",
-    "id": 4
-  },
-  {
-    "email": "markitos@dipalma",
-    "text": "aidjñoshfnñajfds",
-    "time": "08/03/2022 - 19:29:34",
-    "id": 5
   }
 ]

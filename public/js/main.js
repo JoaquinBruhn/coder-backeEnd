@@ -68,6 +68,6 @@ chatSMT.addEventListener("submit", (e) => {
     time: dateStr,
   };
   socket.emit("new-message", message);
-  // e.target[0].value = "";
-  // e.target[1].value = "";
+
+  e.target[1].value = "";
 });
