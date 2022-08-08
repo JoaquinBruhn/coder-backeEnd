@@ -26,26 +26,22 @@ nav > * {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 15rem;
   margin: 20px auto;
 }
 
 .addProd > div {
   display: flex;
   flex-direction: column;
-}
-
-.addProdName {
+  margin-bottom: 10px;
   padding: 4px;
-}
-
-.addProdPrice {
-  padding: 4px;
-  text-align: end;
 }
 
 .addProdThumbnail {
   padding: 4px;
+}
+
+.addProdStock {
+  text-align: end;
 }
 
 .addedProd-container {

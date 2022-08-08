@@ -2,14 +2,14 @@ const express = require("express");
 const app = express();
 const { Server: HttpServer } = require("http");
 const { Server: IOServer } = require("socket.io");
-const productosRouter = require("./routes/router");
+const router = require("./routes/router");
 const PORT = 8080;
 const { prods, messages } = require("./classes/products");
 
 app.use(express.static(__dirname + "/public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/api", productosRouter);
+app.use("/api", router);
 app.set("view engine", "ejs");
 
 const httpServer = new HttpServer(app);

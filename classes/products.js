@@ -36,10 +36,11 @@ class Productos {
         content = "[]";
       }
       const data = JSON.parse(content);
+      const time = timestamp();
       if (data.length > 0) {
-        data.push({ ...obj, id: data[data.length - 1].id + 1 });
+        data.push({ ...obj, id: data[data.length - 1].id + 1, timestamp: time });
       } else {
-        data.push({ ...obj, id: 1 });
+        data.push({ ...obj, id: 1, timestamp: time });
       }
       fs.writeFileSync(this.fileName, JSON.stringify(data, null, 2));
       return data[data.length - 1];
@@ -61,6 +62,10 @@ class Productos {
         title: newObj.title ? newObj.title : products[prodId].title,
         price: newObj.price ? newObj.price : products[prodId].price,
         thumbnail: newObj.thumbnail ? newObj.thumbnail : products[prodId].thumbnail,
+        code: newObj.code ? newObj.code : products[prodId].code,
+        stock: newObj.stock ? newObj.stock : products[prodId].stock,
+        description: newObj.description ? newObj.description : products[prodId].description,
+        timestamp: timestamp(),
         id: products[prodId].id,
       };
       products[prodId] = updatedProd;
@@ -92,6 +97,27 @@ class Productos {
     }
   }
 }
+
+function timestamp() {
+  var date = new Date();
+  var dateStr =
+    "(" +
+    ("00" + (date.getMonth() + 1)).slice(-2) +
+    "/" +
+    ("00" + date.getDate()).slice(-2) +
+    "/" +
+    date.getFullYear() +
+    " - " +
+    ("00" + date.getHours()).slice(-2) +
+    ":" +
+    ("00" + date.getMinutes()).slice(-2) +
+    ":" +
+    ("00" + date.getSeconds()).slice(-2) +
+    ")";
+
+  return dateStr;
+}
+
 const prods = new Productos("desafio");
 
 const messages = new Productos("mensajes");

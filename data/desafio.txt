@@ -21,6 +21,26 @@
     "title": "Lapiz",
     "price": "13",
     "thumbnail": "https://media.istockphoto.com/id/815950992/es/foto/l%C3%A1piz.webp?s=612x612&w=is&k=20&c=Hzj7A-P8Q1WkZvsMbNPdQXwYLEMeLzNWQyNCg1YIj0U=",
-    "id": 4
+    "id": 4,
+    "stock": 5,
+    "description": "This is the product",
+    "time": "(08/03/2022 - 19:56:26)"
+  },
+  {
+    "title": "Helmet",
+    "price": 555,
+    "thumbnail": "https://media.istockphoto.com/id/171326814/es/foto/casco-duro-amarillo-en-blanco-con-trazado-de-recorte.webp?s=612x612&w=is&k=20&c=YJz37TCSVWjKp-gg0a5Jn0x_2542joKYJJZtz4G6Oqc=",
+    "id": 5,
+    "timestamp": "(08/08/2022 - 14:58:29)"
+  },
+  {
+    "title": "Hotdog",
+    "price": "122",
+    "thumbnail": "https://media.istockphoto.com/id/1130731707/es/foto/hot-dog-en-blanco.webp?s=612x612&w=is&k=20&c=-hQtimWj5RhSl8-_vTeKNIVvb2PNEfjSBQCkcu8nAWQ=",
+    "code": "#-Cs594",
+    "stock": "44",
+    "description": "It´s a hot dog, not much to say about it. Comes with some ketchup and mustard",
+    "id": 6,
+    "timestamp": "(08/08/2022 - 17:33:55)"
   }
 ]

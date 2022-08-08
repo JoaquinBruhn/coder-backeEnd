@@ -39,18 +39,25 @@ formSMT.addEventListener("submit", (e) => {
     title: e.target[0].value,
     price: e.target[1].value,
     thumbnail: e.target[2].value,
+    code: e.target[3].value,
+    stock: e.target[4].value,
+    description: e.target[5].value,
   };
 
   socket.emit("new-product", product);
   e.target[0].value = "";
   e.target[1].value = "";
   e.target[2].value = "";
+  e.target[3].value = "";
+  e.target[4].value = "";
+  e.target[5].value = "";
 });
 
 chatSMT.addEventListener("submit", (e) => {
   e.preventDefault();
   var date = new Date();
   var dateStr =
+    "(" +
     ("00" + (date.getMonth() + 1)).slice(-2) +
     "/" +
     ("00" + date.getDate()).slice(-2) +
@@ -61,7 +68,8 @@ chatSMT.addEventListener("submit", (e) => {
     ":" +
     ("00" + date.getMinutes()).slice(-2) +
     ":" +
-    ("00" + date.getSeconds()).slice(-2);
+    ("00" + date.getSeconds()).slice(-2) +
+    ")";
   const message = {
     email: e.target[0].value,
     text: e.target[1].value,
