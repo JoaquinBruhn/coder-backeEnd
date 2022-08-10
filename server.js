@@ -3,7 +3,7 @@ const app = express();
 const { Server: HttpServer } = require("http");
 const { Server: IOServer } = require("socket.io");
 const router = require("./routes/router");
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 const { prods, messages } = require("./classes/products");
 
 app.use(express.static(__dirname + "/public"));
