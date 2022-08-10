@@ -9,7 +9,7 @@ const { prods, messages } = require("./classes/products");
 app.use(express.static(__dirname + "/public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/api", router);
+app.use("/", router);
 app.set("view engine", "ejs");
 
 const httpServer = new HttpServer(app);
