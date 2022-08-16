@@ -4,7 +4,8 @@ const { Server: HttpServer } = require("http");
 const { Server: IOServer } = require("socket.io");
 const router = require("./routes/router");
 const PORT = process.env.PORT || 8080;
-const { prods, messages } = require("./classes/products");
+const { prods } = require("./classes/products");
+const { messages } = require("./classes/messages");
 
 app.use(express.static(__dirname + "/public"));
 app.use(express.json());

@@ -1,15 +1,15 @@
-const { options } = require("../data/mariaDB");
-const knex = require("knex")(options);
 const fs = require("fs");
+const { builtinModules } = require("module");
 
-class Productos {
+class Messages {
   constructor(fileName) {
     this.fileName = "./data/" + fileName + ".txt";
   }
   async getAll() {
     try {
-      const content = await knex.from("products").select("*").orderBy("id", "desc");
-      return content;
+      const content = await fs.promises.readFile(this.fileName, "utf-8");
+      const data = JSON.parse(content);
+      return data;
     } catch (error) {
       console.log(error);
     }
@@ -50,32 +50,6 @@ class Productos {
     }
   }
 
-  async edit(numb, newObj) {
-    try {
-      const content = await fs.promises.readFile(this.fileName, "utf-8");
-      const products = JSON.parse(content);
-      const prodId = products.findIndex((prod) => prod.id == numb);
-      if (prodId < 0) {
-        throw new Object({ error: "Product does not exist" });
-      }
-
-      const updatedProd = {
-        title: newObj.title ? newObj.title : products[prodId].title,
-        price: newObj.price ? newObj.price : products[prodId].price,
-        thumbnail: newObj.thumbnail ? newObj.thumbnail : products[prodId].thumbnail,
-        code: newObj.code ? newObj.code : products[prodId].code,
-        stock: newObj.stock ? newObj.stock : products[prodId].stock,
-        description: newObj.description ? newObj.description : products[prodId].description,
-        timestamp: timestamp(),
-        id: products[prodId].id,
-      };
-      products[prodId] = updatedProd;
-      fs.writeFileSync(this.fileName, JSON.stringify(products, null, 2));
-    } catch (error) {
-      console.log(error);
-      return error;
-    }
-  }
   async deleteById(numb) {
     try {
       const content = await fs.promises.readFile(this.fileName, "utf-8");
@@ -119,6 +93,6 @@ function timestamp() {
   return dateStr;
 }
 
-const prods = new Productos("products");
+const messages = new Messages("messages");
 
-module.exports = { prods };
+module.exports = { messages };
