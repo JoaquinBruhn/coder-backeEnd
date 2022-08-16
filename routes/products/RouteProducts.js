@@ -53,6 +53,19 @@ productosRouter.put("/:id", async (req, res) => {
   }
 });
 
+productosRouter.delete("/", async (req, res) => {
+  if (admin) {
+    try {
+      const prod = await prods.deleteAll();
+      res.json(prod);
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    res.json({ error: -1, descripcion: `route '/${req.params.id}' method 'DELETE' unauthorized` });
+  }
+});
+
 productosRouter.delete("/:id", async (req, res) => {
   if (admin) {
     try {

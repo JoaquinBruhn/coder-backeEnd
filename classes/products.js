@@ -8,7 +8,7 @@ class Productos {
   }
   async getAll() {
     try {
-      const content = await knex.from("products").select("*").orderBy("id", "desc");
+      const content = await knex.from("products").select("*");
       return content;
     } catch (error) {
       console.log(error);
@@ -16,11 +16,12 @@ class Productos {
   }
   async getById(numb) {
     try {
-      const content = await fs.promises.readFile(this.fileName, "utf-8");
-      const data = JSON.parse(content);
-      const product = data.find((el) => el.id == numb);
-      if (product) {
-        return product;
+      // const content = await fs.promises.readFile(this.fileName, "utf-8");
+      // const data = JSON.parse(content);
+      // const product = data.find((el) => el.id == numb);
+      const product = await knex.from("products").where("id", numb);
+      if (product.length > 0) {
+        return product[0];
       } else {
         throw new Object({ error: "Product does not exist" });
       }
@@ -31,20 +32,20 @@ class Productos {
 
   async save(obj) {
     try {
-      let content = await fs.promises.readFile(this.fileName, "utf8");
-      if (content == "") {
-        fs.writeFileSync(this.fileName, "[]");
-        content = "[]";
-      }
-      const data = JSON.parse(content);
+      let content = await knex.from("products").select("*");
+
+      const data = JSON.parse(JSON.stringify(content));
       const time = timestamp();
+      let prod = {};
       if (data.length > 0) {
-        data.push({ ...obj, id: data[data.length - 1].id + 1, timestamp: time });
+        prod = { ...obj, id: data[data.length - 1].id + 1, timestamp: time };
+        await knex("products").insert(prod);
       } else {
-        data.push({ ...obj, id: 1, timestamp: time });
+        prod = { ...obj, id: 1, timestamp: time };
+        await knex("products").insert(prod);
       }
-      fs.writeFileSync(this.fileName, JSON.stringify(data, null, 2));
-      return data[data.length - 1];
+
+      return prod;
     } catch (error) {
       console.log(error);
     }
@@ -52,49 +53,35 @@ class Productos {
 
   async edit(numb, newObj) {
     try {
-      const content = await fs.promises.readFile(this.fileName, "utf-8");
-      const products = JSON.parse(content);
-      const prodId = products.findIndex((prod) => prod.id == numb);
-      if (prodId < 0) {
-        throw new Object({ error: "Product does not exist" });
-      }
-
-      const updatedProd = {
-        title: newObj.title ? newObj.title : products[prodId].title,
-        price: newObj.price ? newObj.price : products[prodId].price,
-        thumbnail: newObj.thumbnail ? newObj.thumbnail : products[prodId].thumbnail,
-        code: newObj.code ? newObj.code : products[prodId].code,
-        stock: newObj.stock ? newObj.stock : products[prodId].stock,
-        description: newObj.description ? newObj.description : products[prodId].description,
+      await knex.from("products").where({ id: numb }).update({
+        title: newObj.title,
+        price: newObj.price,
+        thumbnail: newObj.thumbnail,
+        code: newObj.code,
+        stock: newObj.stock,
+        description: newObj.description,
         timestamp: timestamp(),
-        id: products[prodId].id,
-      };
-      products[prodId] = updatedProd;
-      fs.writeFileSync(this.fileName, JSON.stringify(products, null, 2));
-    } catch (error) {
-      console.log(error);
-      return error;
+      });
+    } catch (err) {
+      console.log(err);
+      throw new Object({ error: "Product does not exist" });
     }
   }
   async deleteById(numb) {
     try {
-      const content = await fs.promises.readFile(this.fileName, "utf-8");
-      const products = JSON.parse(content);
-      const data = products.filter((el) => {
-        return el.id != numb;
-      });
-      fs.writeFileSync(this.fileName, JSON.stringify(data, null, 2));
-      return "Updated the product";
-    } catch (error) {
-      console.log(error);
+      await knex.from("products").where({ id: numb }).del();
+      return "Deleted the product";
+    } catch (err) {
+      console.log(err);
+      throw new Object({ error: "Product does not exist" });
     }
   }
-  deleteAll() {
+  async deleteAll() {
     try {
-      fs.writeFileSync(this.fileName, "[]");
-      return "File was deleted";
-    } catch (error) {
-      return error;
+      await knex.from("products").del();
+      return "All products were deleted";
+    } catch (err) {
+      console.log(err);
     }
   }
 }

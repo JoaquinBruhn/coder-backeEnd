@@ -1,3 +1,3 @@
-const admin = false;
+const admin = true;
 
 module.exports = admin;
