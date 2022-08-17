@@ -73,8 +73,9 @@ chatSMT.addEventListener("submit", (e) => {
   const message = {
     email: e.target[0].value,
     text: e.target[1].value,
-    time: dateStr,
+    timestamp: dateStr,
   };
+
   socket.emit("new-message", message);
 
   e.target[1].value = "";

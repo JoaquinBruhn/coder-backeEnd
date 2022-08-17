@@ -1,6 +1,5 @@
-const { options } = require("../data/mariaDB");
+const { options } = require("../data/knexDB");
 const knex = require("knex")(options);
-const fs = require("fs");
 
 class Productos {
   constructor(fileName) {
@@ -16,9 +15,6 @@ class Productos {
   }
   async getById(numb) {
     try {
-      // const content = await fs.promises.readFile(this.fileName, "utf-8");
-      // const data = JSON.parse(content);
-      // const product = data.find((el) => el.id == numb);
       const product = await knex.from("products").where("id", numb);
       if (product.length > 0) {
         return product[0];

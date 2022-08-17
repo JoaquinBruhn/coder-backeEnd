@@ -1,5 +1,5 @@
-const fs = require("fs");
-const { builtinModules } = require("module");
+const { options } = require("../data/knexDB");
+const knex = require("knex")(options);
 
 class Messages {
   constructor(fileName) {
@@ -7,68 +7,30 @@ class Messages {
   }
   async getAll() {
     try {
-      const content = await fs.promises.readFile(this.fileName, "utf-8");
-      const data = JSON.parse(content);
-      return data;
+      const content = await knex.from("messages").select("*");
+      return content;
     } catch (error) {
       console.log(error);
     }
   }
-  async getById(numb) {
-    try {
-      const content = await fs.promises.readFile(this.fileName, "utf-8");
-      const data = JSON.parse(content);
-      const product = data.find((el) => el.id == numb);
-      if (product) {
-        return product;
-      } else {
-        throw new Object({ error: "Product does not exist" });
-      }
-    } catch (error) {
-      return error;
-    }
-  }
-
   async save(obj) {
     try {
-      let content = await fs.promises.readFile(this.fileName, "utf8");
-      if (content == "") {
-        fs.writeFileSync(this.fileName, "[]");
-        content = "[]";
-      }
-      const data = JSON.parse(content);
-      const time = timestamp();
-      if (data.length > 0) {
-        data.push({ ...obj, id: data[data.length - 1].id + 1, timestamp: time });
-      } else {
-        data.push({ ...obj, id: 1, timestamp: time });
-      }
-      fs.writeFileSync(this.fileName, JSON.stringify(data, null, 2));
-      return data[data.length - 1];
-    } catch (error) {
-      console.log(error);
-    }
-  }
+      let content = await knex.from("messages").select("*");
 
-  async deleteById(numb) {
-    try {
-      const content = await fs.promises.readFile(this.fileName, "utf-8");
-      const products = JSON.parse(content);
-      const data = products.filter((el) => {
-        return el.id != numb;
-      });
-      fs.writeFileSync(this.fileName, JSON.stringify(data, null, 2));
-      return "Updated the product";
+      const data = JSON.parse(JSON.stringify(content));
+      const time = timestamp();
+      let message = {};
+      if (data.length > 0) {
+        message = { ...obj, id: data[data.length - 1].id + 1, timestamp: time };
+        await knex("messages").insert(message);
+      } else {
+        message = { ...obj, id: 1, timestamp: time };
+        await knex("messages").insert(message);
+      }
+
+      return message;
     } catch (error) {
       console.log(error);
-    }
-  }
-  deleteAll() {
-    try {
-      fs.writeFileSync(this.fileName, "[]");
-      return "File was deleted";
-    } catch (error) {
-      return error;
     }
   }
 }
