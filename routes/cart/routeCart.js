@@ -3,12 +3,12 @@ const { Router } = express;
 
 const cartRouter = new Router();
 
-const { carts } = require("../../classes/carts");
+const { cartsDB } = require("../../daos/index.js");
 const { prods } = require("../../classes/products");
 
 cartRouter.get("/:id/productos", async (req, res) => {
   try {
-    const products = await carts.getAllInCart(req.params.id);
+    const products = await cartsDB.getAllInCart(req.params.id);
     res.json(products);
   } catch (error) {
     console.log(error);
@@ -17,7 +17,7 @@ cartRouter.get("/:id/productos", async (req, res) => {
 
 cartRouter.post("/", async (req, res) => {
   try {
-    const cartID = await carts.create();
+    const cartID = await cartsDB.create();
     res.json({ cartID });
   } catch (error) {
     console.log(error);
@@ -27,7 +27,7 @@ cartRouter.post("/", async (req, res) => {
 cartRouter.post("/:id/productos", async (req, res) => {
   try {
     const product = await prods.getById(req.body.id);
-    const prodsInCart = await carts.addProduct(req.params.id, product);
+    const prodsInCart = await cartsDB.addProduct(req.params.id, product);
     res.json(prodsInCart);
   } catch (error) {
     console.log(error);
@@ -36,7 +36,7 @@ cartRouter.post("/:id/productos", async (req, res) => {
 
 cartRouter.delete("/", async (req, res) => {
   try {
-    const cart = await carts.deleteAll();
+    const cart = await cartsDB.deleteAll();
     res.json(cart);
   } catch (error) {
     console.log(error);
@@ -45,7 +45,7 @@ cartRouter.delete("/", async (req, res) => {
 
 cartRouter.delete("/:id", async (req, res) => {
   try {
-    const cart = await carts.deleteById(req.params.id);
+    const cart = await cartsDB.deleteById(req.params.id);
     res.json(cart);
   } catch (error) {
     console.log(error);
@@ -54,7 +54,7 @@ cartRouter.delete("/:id", async (req, res) => {
 
 cartRouter.delete("/:id/productos/:id_prod", async (req, res) => {
   try {
-    const cart = await carts.removeProduct(parseInt(req.params.id), parseInt(req.params.id_prod));
+    const cart = await cartsDB.removeProduct(parseInt(req.params.id), parseInt(req.params.id_prod));
     res.json(cart);
   } catch (error) {
     console.log(error);
