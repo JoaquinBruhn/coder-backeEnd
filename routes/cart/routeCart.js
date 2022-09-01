@@ -4,7 +4,7 @@ const { Router } = express;
 const cartRouter = new Router();
 
 const { cartsDB } = require("../../daos/index.js");
-const { prods } = require("../../classes/products");
+const { prodsDB } = require("../../daos/index");
 
 cartRouter.get("/:id/productos", async (req, res) => {
   try {
@@ -17,7 +17,7 @@ cartRouter.get("/:id/productos", async (req, res) => {
 
 cartRouter.post("/", async (req, res) => {
   try {
-    const cartID = await cartsDB.create();
+    const cartID = await cartsDB.createCart();
     res.json({ cartID });
   } catch (error) {
     console.log(error);
@@ -26,7 +26,7 @@ cartRouter.post("/", async (req, res) => {
 
 cartRouter.post("/:id/productos", async (req, res) => {
   try {
-    const product = await prods.getById(req.body.id);
+    const product = await prodsDB.getById(req.body.id);
     const prodsInCart = await cartsDB.addProduct(req.params.id, product);
     res.json(prodsInCart);
   } catch (error) {

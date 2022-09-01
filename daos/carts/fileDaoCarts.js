@@ -19,6 +19,50 @@ class FileDaoCarts extends FileContainer {
     }
   }
 
+  async createCart() {
+    try {
+      let content = await fs.promises.readFile(this.fileName, "utf8");
+      if (content == "") {
+        fs.writeFileSync(this.fileName, "[]");
+        content = "[]";
+      }
+      const data = JSON.parse(content);
+      const time = timestamp();
+      if (data.length > 0) {
+        data.push({ id: data[data.length - 1].id + 1, timestamp: time, products: [] });
+      } else {
+        data.push({ id: 1, timestamp: time, products: [] });
+      }
+      fs.writeFileSync(this.fileName, JSON.stringify(data, null, 2));
+      return data[data.length - 1].id;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async addProduct(cartId, obj) {
+    try {
+      let content = await fs.promises.readFile(this.fileName, "utf8");
+      if (content == "") {
+        fs.writeFileSync(this.fileName, "[]");
+        content = "[]";
+      }
+      const data = JSON.parse(content);
+
+      const cartIndex = data.findIndex((el) => el.id === parseInt(cartId));
+
+      if (cartIndex >= 0) {
+        data[cartIndex].products.push(obj);
+        fs.writeFileSync(this.fileName, JSON.stringify(data, null, 2));
+        return data[cartIndex].products;
+      } else {
+        throw new Object({ error: "Cart does not exist" });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async removeProduct(cartId, prodId) {
     try {
       let content = await fs.promises.readFile(this.fileName, "utf8");
@@ -41,6 +85,26 @@ class FileDaoCarts extends FileContainer {
       console.log(error);
     }
   }
+}
+
+function timestamp() {
+  var date = new Date();
+  var dateStr =
+    "(" +
+    ("00" + (date.getMonth() + 1)).slice(-2) +
+    "/" +
+    ("00" + date.getDate()).slice(-2) +
+    "/" +
+    date.getFullYear() +
+    " - " +
+    ("00" + date.getHours()).slice(-2) +
+    ":" +
+    ("00" + date.getMinutes()).slice(-2) +
+    ":" +
+    ("00" + date.getSeconds()).slice(-2) +
+    ")";
+
+  return dateStr;
 }
 
 // export default FileDaoCarts;
