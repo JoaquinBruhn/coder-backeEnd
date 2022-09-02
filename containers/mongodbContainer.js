@@ -1,57 +1,56 @@
-const fs = require("fs");
+const mongoose = require("mongoose");
+mongoose.connect("mongodb+srv://joaco:admin1@coder-backend.jyd2rnt.mongodb.net/?retryWrites=true&w=majority");
 
-class FileContainer {
-  constructor(fileName) {
-    this.fileName = "./data/" + fileName + ".txt";
+class MongodbContainer {
+  constructor(schema) {
+    this.schema = schema;
   }
 
   async getAll() {
     try {
-      const content = await fs.promises.readFile(this.fileName, "utf-8");
-      const data = JSON.parse(content);
-      return data;
+      const content = await this.schema.find();
+      mongoose.disconnect();
+      return content;
     } catch (error) {
+      console.log(error);
+      mongoose.disconnect();
+    }
+  }
+
+  async getById(id) {
+    try {
+      const content = await this.schema.findById(id);
+      mongoose.disconnect();
+      return content;
+    } catch (error) {
+      mongoose.disconnect();
+      console.log(error);
+      throw new Object({ error: "Object does not exist" });
+    }
+  }
+
+  async deleteById(id) {
+    try {
+      const deleted = await this.schema.findByIdAndDelete(id);
+      mongoose.disconnect();
+
+      return `Deleted the product: ${deleted.title}`;
+    } catch (error) {
+      mongoose.disconnect();
       console.log(error);
     }
   }
 
-  async getById(numb) {
+  async deleteAll() {
     try {
-      const content = await fs.promises.readFile(this.fileName, "utf-8");
-      const data = JSON.parse(content);
-      const product = data.find((el) => el.id == numb);
-      if (product) {
-        return product;
-      } else {
-        throw new Object({ error: "Object does not exist" });
-      }
+      await this.schema.deleteMany();
+      mongoose.disconnect();
+      return "Collection was emptied";
     } catch (error) {
-      return error;
-    }
-  }
-
-  async deleteById(numb) {
-    try {
-      const content = await fs.promises.readFile(this.fileName, "utf-8");
-      const arr = JSON.parse(content);
-      const data = arr.filter((el) => {
-        return el.id != numb;
-      });
-      fs.writeFileSync(this.fileName, JSON.stringify(data, null, 2));
-      return "Deleted the object";
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  deleteAll() {
-    try {
-      fs.writeFileSync(this.fileName, "[]");
-      return "File was emptied";
-    } catch (error) {
+      mongoose.disconnect();
       return error;
     }
   }
 }
 
-module.exports = FileContainer;
+module.exports = MongodbContainer;
