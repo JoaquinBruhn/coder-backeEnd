@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const MongodbContainer = require("../../containers/mongodbContainer");
+mongoose.connect("mongodb+srv://joaco:admin1@coder-backend.jyd2rnt.mongodb.net/?retryWrites=true&w=majority");
 
 class MongodbDaoProduct extends MongodbContainer {
   constructor(schema) {
@@ -11,20 +12,16 @@ class MongodbDaoProduct extends MongodbContainer {
       const time = timestamp();
       const newProduct = new this.schema({ ...obj, timestamp: time });
       await newProduct.save();
-      mongoose.disconnect();
       return newProduct;
     } catch (error) {
-      mongoose.disconnect();
       console.log(error);
     }
   }
   async edit(id, newProd) {
     try {
       const updatedProd = await this.schema.findByIdAndUpdate(id, { ...newProd, timestamp: timestamp() });
-      mongoose.disconnect();
       return updatedProd;
     } catch (error) {
-      mongoose.disconnect();
       console.log(error);
       return error;
     }

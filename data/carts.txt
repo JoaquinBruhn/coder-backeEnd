@@ -32,12 +32,23 @@
         "price": 4567,
         "thumbnail": "https://media.istockphoto.com/id/1157789866/es/foto/computadora-moderna-laptop-con-pantalla-en-blanco-en-la-barra-de-mostrador-y-vista-de-ventana.webp?s=612x612&w=is&k=20&c=SzHYp303Ey2tuY4mtmG66ShYiIuRvfbsqKxZf-Y1p9E=",
         "id": 2
+      },
+      {
+        "title": "Tree",
+        "price": 444,
+        "thumbnail": "https://media.istockphoto.com/id/470604022/es/foto/%C3%A1rbol-de-manzano.webp?s=612x612&w=is&k=20&c=aV8JifRYM6BqA-0kj8RzrPg_z89gk1Gdk15jjJ5f5ZE=",
+        "id": 3
       }
     ]
   },
   {
     "id": 4,
     "timestamp": "(08/09/2022 - 12:19:36)",
+    "products": []
+  },
+  {
+    "id": 5,
+    "timestamp": "(09/03/2022 - 20:39:56)",
     "products": []
   }
 ]

@@ -9,21 +9,17 @@ class MongodbContainer {
   async getAll() {
     try {
       const content = await this.schema.find();
-      mongoose.disconnect();
       return content;
     } catch (error) {
       console.log(error);
-      mongoose.disconnect();
     }
   }
 
   async getById(id) {
     try {
       const content = await this.schema.findById(id);
-      mongoose.disconnect();
       return content;
     } catch (error) {
-      mongoose.disconnect();
       console.log(error);
       throw new Object({ error: "Object does not exist" });
     }
@@ -32,11 +28,8 @@ class MongodbContainer {
   async deleteById(id) {
     try {
       const deleted = await this.schema.findByIdAndDelete(id);
-      mongoose.disconnect();
-
       return `Deleted the product: ${deleted.title}`;
     } catch (error) {
-      mongoose.disconnect();
       console.log(error);
     }
   }
@@ -44,10 +37,8 @@ class MongodbContainer {
   async deleteAll() {
     try {
       await this.schema.deleteMany();
-      mongoose.disconnect();
       return "Collection was emptied";
     } catch (error) {
-      mongoose.disconnect();
       return error;
     }
   }
