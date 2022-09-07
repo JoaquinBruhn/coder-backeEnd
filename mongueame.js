@@ -1,9 +1,4 @@
-const mongoose = require("mongoose");
-const Product = require("./modals/mongoProductModal");
-const Cart = require("./modals/mongoCartModal");
-const MongodbContainer = require("./containers/mongodbContainer");
-const MongodbDaoCarts = require("./daos/carts/mongodbDaoCarts");
-const MongodbDaoProduct = require("./daos/products/mongodbDaoProducts");
+const MemoryContainer = require("./containers/memoryContainer");
 const express = require("express");
 const app = express();
 
@@ -22,6 +17,13 @@ const product = {
   timestamp: "(08/03/2022 - 19:56:26)",
 };
 
+const product2 = {
+  title: "Hotest dog",
+  price: 50,
+  stock: 5,
+  description: "It´s a hot dog, not much to say about it. Comes with some ketchup and mustard",
+};
+
 // app.get("/products", async (req, res) => {
 //   try {
 //     const prodsDB = new MongodbDaoProduct(Product);
@@ -33,12 +35,34 @@ const product = {
 //   }
 // });
 
+// app.get("/products", async (req, res) => {
+//   try {
+//     const cartsDB = new FirebaseDaoCarts("carts");
+//     const response = await cartsDB.removeProduct("L4tbYC1pMz45XDO3iWy9", "XrUAHPd90lzjoTt6PaME");
+//     res.json(response);
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).end();
+//   }
+// });
+
+let productsArray = [
+  {
+    title: "Lapiz",
+    price: "13",
+    thumbnail:
+      "https://media.istockphoto.com/id/815950992/es/foto/l%C3%A1piz.webp?s=612x612&w=is&k=20&c=Hzj7A-P8Q1WkZvsMbNPdQXwYLEMeLzNWQyNCg1YIj0U=",
+    id: 4,
+    stock: 5,
+    description: "This is the product",
+    timestamp: "(08/03/2022 - 19:56:26)",
+  },
+];
+
 app.get("/products", async (req, res) => {
   try {
-    const cartdb = new MongodbDaoCarts(Cart);
-    // 6313dd93e4888ab87e9b671c
-    // 6313dd91e4888ab87e9b671a
-    const response = await cartdb.removeProduct("6313e07ba8593723c6467762", "6313dd91e4888ab87e9b671a");
+    const prodsDB = new MemoryContainer(productsArray);
+    const response = await prodsDB.getAll();
     res.json(response);
   } catch (error) {
     console.log(error);

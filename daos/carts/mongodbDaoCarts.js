@@ -1,4 +1,3 @@
-const fs = require("fs");
 const mongoose = require("mongoose");
 const MongodbContainer = require("../../containers/mongodbContainer");
 const Product = require("../../modals/mongoProductModal");
