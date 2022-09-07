@@ -23,7 +23,7 @@ class FirebaseContainer {
             data.id = doc.id;
             prods.push(data);
           });
-          console.log(prods);
+
           resolve(prods);
         })
         .catch((err) => {

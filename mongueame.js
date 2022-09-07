@@ -1,4 +1,5 @@
-const MemoryContainer = require("./containers/memoryContainer");
+const MemoryDaoProducts = require("./daos/products/memoryDaoProducts");
+const MemoryDaoCarts = require("./daos/carts/memoryDaoCarts");
 const express = require("express");
 const app = express();
 
@@ -17,52 +18,108 @@ const product = {
   timestamp: "(08/03/2022 - 19:56:26)",
 };
 
-const product2 = {
+const prodUpedate = {
   title: "Hotest dog",
   price: 50,
   stock: 5,
   description: "It´s a hot dog, not much to say about it. Comes with some ketchup and mustard",
 };
 
-// app.get("/products", async (req, res) => {
-//   try {
-//     const prodsDB = new MongodbDaoProduct(Product);
-//     const response = await prodsDB.save(product);
-//     res.json(response);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).end();
-//   }
-// });
-
-// app.get("/products", async (req, res) => {
-//   try {
-//     const cartsDB = new FirebaseDaoCarts("carts");
-//     const response = await cartsDB.removeProduct("L4tbYC1pMz45XDO3iWy9", "XrUAHPd90lzjoTt6PaME");
-//     res.json(response);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).end();
-//   }
-// });
-
 let productsArray = [
   {
-    title: "Lapiz",
-    price: "13",
+    title: "Car",
+    price: 15,
     thumbnail:
-      "https://media.istockphoto.com/id/815950992/es/foto/l%C3%A1piz.webp?s=612x612&w=is&k=20&c=Hzj7A-P8Q1WkZvsMbNPdQXwYLEMeLzNWQyNCg1YIj0U=",
-    id: 4,
-    stock: 5,
-    description: "This is the product",
-    timestamp: "(08/03/2022 - 19:56:26)",
+      "https://media.istockphoto.com/id/1150931120/es/foto/ilustraci%C3%B3n-3d-del-coche-blanco-compacto-gen%C3%A9rico-vista-frontal-lateral.webp?s=612x612&w=is&k=20&c=XzGv6h3_nR0r5TUwTyybdmrdTY7IHdtePdd6h-wwspc=",
+    id: 1,
+  },
+  {
+    title: "Laptop",
+    price: 4567,
+    thumbnail:
+      "https://media.istockphoto.com/id/1157789866/es/foto/computadora-moderna-laptop-con-pantalla-en-blanco-en-la-barra-de-mostrador-y-vista-de-ventana.webp?s=612x612&w=is&k=20&c=SzHYp303Ey2tuY4mtmG66ShYiIuRvfbsqKxZf-Y1p9E=",
+    id: 2,
   },
 ];
+let cartsArray = [
+  {
+    id: 1,
+    timestamp: "(08/09/2022 - 12:19:32)",
+    products: [
+      {
+        title: "Helmet",
+        price: 555,
+        thumbnail:
+          "https://media.istockphoto.com/id/171326814/es/foto/casco-duro-amarillo-en-blanco-con-trazado-de-recorte.webp?s=612x612&w=is&k=20&c=YJz37TCSVWjKp-gg0a5Jn0x_2542joKYJJZtz4G6Oqc=",
+        id: 5,
+        timestamp: "(08/08/2022 - 14:58:29)",
+      },
+    ],
+  },
+  {
+    id: 2,
+    timestamp: "(08/09/2022 - 12:19:35)",
+    products: [
+      {
+        title: "Car",
+        price: 15,
+        thumbnail:
+          "https://media.istockphoto.com/id/1150931120/es/foto/ilustraci%C3%B3n-3d-del-coche-blanco-compacto-gen%C3%A9rico-vista-frontal-lateral.webp?s=612x612&w=is&k=20&c=XzGv6h3_nR0r5TUwTyybdmrdTY7IHdtePdd6h-wwspc=",
+        id: 1,
+      },
+      {
+        title: "Laptop",
+        price: 4567,
+        thumbnail:
+          "https://media.istockphoto.com/id/1157789866/es/foto/computadora-moderna-laptop-con-pantalla-en-blanco-en-la-barra-de-mostrador-y-vista-de-ventana.webp?s=612x612&w=is&k=20&c=SzHYp303Ey2tuY4mtmG66ShYiIuRvfbsqKxZf-Y1p9E=",
+        id: 2,
+      },
+      {
+        title: "Tree",
+        price: 444,
+        thumbnail:
+          "https://media.istockphoto.com/id/470604022/es/foto/%C3%A1rbol-de-manzano.webp?s=612x612&w=is&k=20&c=aV8JifRYM6BqA-0kj8RzrPg_z89gk1Gdk15jjJ5f5ZE=",
+        id: 3,
+      },
+    ],
+  },
+];
+const prodsDB = new MemoryDaoProducts(productsArray);
+const cartsDB = new MemoryDaoCarts(cartsArray);
 
 app.get("/products", async (req, res) => {
   try {
-    const prodsDB = new MemoryContainer(productsArray);
-    const response = await prodsDB.getAll();
+    const response = await cartsDB.getAllInCart(2);
+    res.json(response);
+  } catch (error) {
+    console.log(error);
+    res.status(500).end();
+  }
+});
+
+app.post("/products", async (req, res) => {
+  try {
+    const response = await cartsDB.addProduct(3, product);
+    res.json(response);
+  } catch (error) {
+    console.log(error);
+    res.status(500).end();
+  }
+});
+
+app.put("/products", async (req, res) => {
+  try {
+    const response = await cartsDB.edit(4, prodUpedate);
+    res.json(response);
+  } catch (error) {
+    console.log(error);
+    res.status(500).end();
+  }
+});
+
+app.delete("/products", async (req, res) => {
+  try {
+    const response = await cartsDB.removeProduct(2, 3);
     res.json(response);
   } catch (error) {
     console.log(error);
@@ -73,3 +130,5 @@ app.get("/products", async (req, res) => {
 app.listen(3000, () => {
   console.log("Listening on port 3000");
 });
+
+module.exports = prodsDB;

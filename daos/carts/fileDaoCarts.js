@@ -1,4 +1,3 @@
-// import FileContainer from "../../containers/fileContainer";
 const fs = require("fs");
 const FileContainer = require("../../containers/fileContainer");
 
@@ -113,5 +112,4 @@ function timestamp() {
   return dateStr;
 }
 
-// export default FileDaoCarts;
 module.exports = FileDaoCarts;
