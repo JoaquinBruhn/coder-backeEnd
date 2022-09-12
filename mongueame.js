@@ -143,7 +143,7 @@ app.put("/products", async (req, res) => {
 
 app.delete("/products", async (req, res) => {
   try {
-    const response = await cartsDB.removeProduct("6313e22eef7626e1aa09a919", "6313dd91e4888ab87e9b671a");
+    const response = await cartsDB.testeando("631f72bbcd68eafe3738fe2d", "6313dd91e4888ab87e9b671a");
     res.json(response);
   } catch (error) {
     console.log(error);

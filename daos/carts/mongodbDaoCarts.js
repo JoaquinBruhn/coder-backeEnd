@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { ObjectId } = require("mongodb");
 const MongodbContainer = require("../../containers/mongodbContainer");
 const Product = require("../../modals/mongoProductModal");
 const Cart = require("../../modals/mongoCartModal");
@@ -45,34 +46,21 @@ class MongodbDaoCarts extends MongodbContainer {
       console.log(error);
     }
   }
-  async testeando(cartId, prodId) {
-    const currentCart = await this.schema.findById(cartId);
-    // delete currentCart.products[prodId];
-
-    // const updatedCart = await this.schema.updateOne(
-    //   { id: cartId },
-    //   {
-    //     $set: currentCart,
-    //   }
-    // );
-    console.log(currentCart);
-    const removedProd = currentCart.products.filter((el) => el._id !== prodId);
-    console.log(removedProd);
-
-    const cartUpdate = {
-      timestamp: timestamp(),
-      products: removedProd,
-    };
-
-    return cartUpdate;
-  }
 
   async removeProduct(cartId, prodId) {
     try {
-      await this.schema.findByIdAndUpdate(cartId, { $pull: { products: prodId } });
-      const cartSearcher = new MongodbContainer(Cart);
-      const updatedCart = await cartSearcher.getById(cartId);
-      return updatedCart;
+      const currentCart = await this.schema.find();
+      console.log(currentCart);
+      const indexCart = currentCart.findIndex((el) => el._id == cartId);
+      const indexProduct = currentCart[indexCart].products.findIndex((el) => el._id == prodId);
+      currentCart[indexCart].products.splice(indexProduct, 1);
+      console.log(indexProduct);
+      await this.schema.findByIdAndUpdate(cartId, {
+        products: currentCart[indexCart].products,
+        timestamp: timestamp(),
+      });
+
+      return currentCart[indexCart];
     } catch (error) {
       console.log(error);
     }
