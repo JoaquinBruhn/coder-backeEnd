@@ -36,7 +36,15 @@ const io = new IOServer(httpServer);
 
 io.on("connection", async function (socket) {
   console.log("Un cliente se ha conectado");
+
   let products = await prodsDB.getAll();
+  if (products[0]._id) {
+    products = JSON.stringify(products);
+    products = JSON.parse(products);
+    products = products.map((el) => {
+      return { ...el, id: el._id };
+    });
+  }
   socket.emit("product-load", { products });
 
   let chat = await messages.getAll();
