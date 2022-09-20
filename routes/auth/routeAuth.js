@@ -3,9 +3,14 @@ const { Router } = express;
 const User = require("../../modals/user");
 const bcrypy = require("bcrypt");
 const passport = require("passport");
+const { auth } = require("firebase-admin");
 const authRouter = new Router();
 
 authRouter.get("/register", (req, res) => {
+  res.render("pages/register");
+});
+
+authRouter.post("/register", (req, res) => {
   const { username, password, direction } = req.body;
   User.findOne({ username }, async (err, user) => {
     if (err) console.log(err);
