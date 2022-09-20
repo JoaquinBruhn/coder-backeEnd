@@ -1,13 +1,33 @@
 const express = require("express");
 const { Router } = express;
-
+const User = require("../../modals/user");
+const bcrypy = require("bcrypt");
+const passport = require("passport");
 const authRouter = new Router();
+
+authRouter.get("/register", (req, res) => {
+  const { username, password, direction } = req.body;
+  User.findOne({ username }, async (err, user) => {
+    if (err) console.log(err);
+    if (user) res.render("pages/register_error");
+    if (!user) {
+      const hashedPassword = await bcrypy.hash(password, 10);
+      const newUser = new User({
+        username,
+        password: hashedPassword,
+        direction,
+      });
+      await newUser.save();
+      res.redirect("/auth/login");
+    }
+  });
+});
 
 authRouter.get("/login", (req, res) => {
   res.render("pages/login");
 });
 
-authRouter.post("/login", async (req, res) => {
+authRouter.post("/login", passport.authenticate("local", { failureRedirect: "Loging error" }), async (req, res) => {
   try {
     const username = req.body.username;
     if (username == "pepe") {

@@ -1,7 +1,6 @@
 const express = require("express");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-
 const app = express();
 const { Server: HttpServer } = require("http");
 const { Server: IOServer } = require("socket.io");
@@ -11,6 +10,10 @@ const router = require("./routes/router");
 const PORT = process.env.PORT || 8080;
 const { prodsDB } = require("./daos/index");
 const { messages } = require("./containers/messagesContainer");
+const passport = require("passport");
+const { Strategy } = require("passport-local");
+const localStrategy = Strategy;
+const User = require("./modals/user");
 
 app.use(express.static(__dirname + "/public"));
 app.use(express.json());
@@ -28,8 +31,31 @@ app.use(
     saveUninitialized: false,
   })
 );
+app.use(passport.initialize());
+app.use(passport.session());
 app.use("/", router);
 app.set("view engine", "ejs");
+passport.use(
+  new localStrategy((username, password, done) => {
+    user.findOne({ username }, (err, user) => {
+      if (err) console.log(err);
+      if (!user) return done(null, false);
+      bcrypt.compare(password, user.password, (err, isMatch) => {
+        if (err) console.log(err);
+        if (isMatch) return done(null, user);
+        return done(null, false);
+      });
+    });
+  })
+);
+passport.serializeUser((user, done) => {
+  done(null, user._id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  const user = await User.findById(id);
+  return done(null, user);
+});
 
 const httpServer = new HttpServer(app);
 const io = new IOServer(httpServer);
