@@ -4,6 +4,7 @@ const MongoStore = require("connect-mongo");
 const app = express();
 const { Server: HttpServer } = require("http");
 const { Server: IOServer } = require("socket.io");
+const bcrypt = require("bcrypt");
 
 const router = require("./routes/router");
 
@@ -37,7 +38,7 @@ app.use("/", router);
 app.set("view engine", "ejs");
 passport.use(
   new localStrategy((username, password, done) => {
-    user.findOne({ username }, (err, user) => {
+    User.findOne({ username }, (err, user) => {
       if (err) console.log(err);
       if (!user) return done(null, false);
       bcrypt.compare(password, user.password, (err, isMatch) => {
