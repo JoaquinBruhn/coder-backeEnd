@@ -34,9 +34,6 @@ authRouter.get("/login", (req, res) => {
 
 authRouter.post("/login", passport.authenticate("local", { failureRedirect: "Loging-error" }), async (req, res) => {
   try {
-    const username = req.body.username;
-    console.log(username);
-    req.session.username = username;
     res.redirect("/");
     return;
   } catch (error) {
@@ -49,7 +46,7 @@ authRouter.get("/loging-error", (req, res) => {
 });
 
 authRouter.get("/logout", async (req, res) => {
-  res.render("pages/logout", { username: req.session.username });
+  res.render("pages/logout", { data: req.user });
   req.session.destroy((err) => {
     if (err) {
       return res.json({ status: "Logout error", body: err });
