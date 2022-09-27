@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const MONGOKEY = process.env.MONGOKEY;
 const MongodbContainer = require("../../containers/mongodbContainer");
-mongoose.connect("mongodb+srv://joaco:admin1@coder-backend.jyd2rnt.mongodb.net/?retryWrites=true&w=majority");
+mongoose.connect(MONGOKEY);
 
 class MongodbDaoProduct extends MongodbContainer {
   constructor(schema) {

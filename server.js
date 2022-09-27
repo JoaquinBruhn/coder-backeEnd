@@ -5,10 +5,11 @@ const app = express();
 const { Server: HttpServer } = require("http");
 const { Server: IOServer } = require("socket.io");
 const bcrypt = require("bcrypt");
-
+const minimist = require("minimist");
 const router = require("./routes/router");
 
-const PORT = process.env.PORT || 8080;
+const PORT = Object.values(minimist(process.argv.slice(2)))[0][0] || 8080;
+const MONGOKEY = process.env.MONGOKEY;
 const { prodsDB } = require("./daos/index");
 const { messages } = require("./containers/messagesContainer");
 const passport = require("passport");
@@ -22,7 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
     store: new MongoStore({
-      mongoUrl: "mongodb+srv://joaco:admin1@coder-backend.jyd2rnt.mongodb.net/?retryWrites=true&w=majority",
+      mongoUrl: MONGOKEY,
       rolling: true,
       //change to 600 for 10 minutes
       ttl: 60,

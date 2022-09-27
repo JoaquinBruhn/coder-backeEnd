@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb+srv://joaco:admin1@coder-backend.jyd2rnt.mongodb.net/?retryWrites=true&w=majority");
+const MONGOKEY = process.env.MONGOKEY;
+mongoose.connect(MONGOKEY);
 
 class MongodbContainer {
   constructor(schema) {
