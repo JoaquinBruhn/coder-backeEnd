@@ -20,8 +20,8 @@ const localStrategy = Strategy;
 const minimist = require("minimist");
 const compression = require("compression");
 
-const PORT = Object.values(minimist(process.argv.slice(2)))[0][0] || 8080;
-
+const PORT = process.env.PORT || 8080;
+// Object.values(minimist(process.argv.slice(2)))[0][0]
 app.use(express.static(__dirname + "/public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
