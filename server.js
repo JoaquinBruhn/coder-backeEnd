@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-console.log("hello world");
 const router = require("./routes/router.js");
 const session = require("express-session");
 
@@ -19,14 +18,13 @@ const { Strategy } = require("passport-local");
 const localStrategy = Strategy;
 
 const minimist = require("minimist");
+// Object.values(minimist(process.argv.slice(2)))[0][0]
 const compression = require("compression");
 
 const PORT = process.env.PORT || 8080;
-// Object.values(minimist(process.argv.slice(2)))[0][0]
 app.use(express.static(__dirname + "/public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-console.log(MONGOKEY);
 app.use(
   session({
     store: new MongoStore({
