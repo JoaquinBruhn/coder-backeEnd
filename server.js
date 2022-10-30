@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const router = require("./routes/router");
+const router = require("./routes/router.js");
 const session = require("express-session");
 
 const MongoStore = require("connect-mongo");
@@ -10,8 +10,8 @@ const { Server: HttpServer } = require("http");
 const { Server: IOServer } = require("socket.io");
 const bcrypt = require("bcrypt");
 
-const { prodsDB } = require("./daos/index");
-const { messages } = require("./containers/messagesContainer");
+const { prodsDB } = require("./daos/index.js");
+const { messages } = require("./containers/messagesContainer.js");
 
 const passport = require("passport");
 const { Strategy } = require("passport-local");

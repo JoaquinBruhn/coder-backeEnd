@@ -36,7 +36,7 @@ randomsNumbRouter.get("/", (req, res) => {
 });
 randomsNumbRouter.get("/:cant", (req, res) => {
   try {
-    const childProcess = fork("./modals/processRandoms");
+    const childProcess = fork("./modals/processRandoms.js");
     childProcess.send({ type: "calculate", radius: req.params.cant });
     childProcess.on("message", (result) => {
       console.log("completed");

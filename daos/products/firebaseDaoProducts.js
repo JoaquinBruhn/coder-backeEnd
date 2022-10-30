@@ -1,4 +1,4 @@
-const FirebaseContainer = require("../../containers/firebaseContainer");
+const FirebaseContainer = require("../../containers/firebaseContainer.js");
 
 var admin = require("firebase-admin");
 

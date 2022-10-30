@@ -1,6 +1,6 @@
-const { options } = require("./data/knexDB");
+const { options } = require("./data/knexDB.js");
 const knex = require("knex")(options);
-const { prods } = require("./classes/products");
+const { prods } = require("./classes/products.js");
 const express = require("express");
 const app = express();
 

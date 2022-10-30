@@ -1,9 +1,9 @@
-const MongoDaoProducts = require("./daos/products/mongodbDaoProducts");
-const MongoDaoCarts = require("./daos/carts/mongodbDaoCarts");
-const Product = require("./modals/mongoProductModal");
-const Cart = require("./modals/mongoCartModal");
-const MemoryDaoProducts = require("./daos/products/memoryDaoProducts");
-const MemoryDaoCarts = require("./daos/carts/memoryDaoCarts");
+const MongoDaoProducts = require("./daos/products/mongodbDaoProducts.js");
+const MongoDaoCarts = require("./daos/carts/mongodbDaoCarts.js");
+const Product = require("./modals/mongoProductModal.js");
+const Cart = require("./modals/mongoCartModal.js");
+const MemoryDaoProducts = require("./daos/products/memoryDaoProducts.js");
+const MemoryDaoCarts = require("./daos/carts/memoryDaoCarts.js");
 const express = require("express");
 const app = express();
 

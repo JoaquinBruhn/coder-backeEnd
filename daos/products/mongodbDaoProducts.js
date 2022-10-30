@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const MongodbContainer = require("../../containers/mongodbContainer");
+const MongodbContainer = require("../../containers/mongodbContainer.js");
 const MONGOKEY = process.env.MONGOKEY;
 mongoose.connect(MONGOKEY);
 

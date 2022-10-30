@@ -1,9 +1,9 @@
 const express = require("express");
 const { Router } = express;
-const admin = require("../../controllers/adminController");
+const admin = require("../../controllers/adminController.js");
 const productosRouter = new Router();
-const { prodsDB } = require("../../daos/index");
-const { loggerApiError } = require("../../middlewares/log4js/class32");
+const { prodsDB } = require("../../daos/index.js");
+const { loggerApiError } = require("../../middlewares/log4js/class32.js");
 
 productosRouter.get("/", async (req, res) => {
   try {

@@ -1,6 +1,6 @@
 const express = require("express");
 const { Router } = express;
-const User = require("../../modals/user");
+const User = require("../../modals/user.js");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const { auth } = require("firebase-admin");

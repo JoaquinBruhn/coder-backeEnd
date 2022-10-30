@@ -1,5 +1,5 @@
 const express = require("express");
-const User = require("../../modals/user");
+const User = require("../../modals/user.js");
 const { Router } = express;
 
 const homeRouter = new Router();

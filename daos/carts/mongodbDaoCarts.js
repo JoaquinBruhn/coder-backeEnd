@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-const MongodbContainer = require("../../containers/mongodbContainer");
-const Product = require("../../modals/mongoProductModal");
-const Cart = require("../../modals/mongoCartModal");
+const MongodbContainer = require("../../containers/mongodbContainer.js");
+const Product = require("../../modals/mongoProductModal.js");
+const Cart = require("../../modals/mongoCartModal.js");
 const MONGOKEY = process.env.MONGOKEY;
 mongoose.connect(MONGOKEY);
 

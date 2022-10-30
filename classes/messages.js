@@ -1,4 +1,4 @@
-const { options } = require("../data/knexDB");
+const { options } = require("../data/knexDB.js");
 const knex = require("knex")(options);
 const { loggerApiError } = require("../middlewares/log4js/class32");
 

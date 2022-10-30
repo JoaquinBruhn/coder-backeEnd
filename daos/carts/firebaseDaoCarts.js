@@ -1,5 +1,5 @@
 var admin = require("firebase-admin");
-const FirebaseContainer = require("../../containers/firebaseContainer");
+const FirebaseContainer = require("../../containers/firebaseContainer.js");
 
 class FirebaseDaoCarts extends FirebaseContainer {
   constructor(collection) {

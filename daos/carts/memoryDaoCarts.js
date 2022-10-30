@@ -1,5 +1,5 @@
-const MemoryContainer = require("../../containers/memoryContainer");
-const prodsDB = require("../../mongueame");
+const MemoryContainer = require("../../containers/memoryContainer.js");
+const prodsDB = require("../../mongueame.js");
 
 class MemoryDaoCarts extends MemoryContainer {
   constructor(arr) {

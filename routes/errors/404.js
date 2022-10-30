@@ -1,7 +1,7 @@
 const express = require("express");
 const { Router } = express;
 const notFoundError = Router();
-const { loggerDefault, loggerNotFound, loggerApiError } = require("../../middlewares/log4js/class32");
+const { loggerDefault, loggerNotFound, loggerApiError } = require("../../middlewares/log4js/class32.js");
 
 notFoundError.use((req, res, next) => {
   loggerNotFound.warn(`WARNING, route "${req.originalUrl}" does not exist`);
