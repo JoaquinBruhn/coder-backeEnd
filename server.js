@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+console.log("hello world");
 const router = require("./routes/router.js");
 const session = require("express-session");
 

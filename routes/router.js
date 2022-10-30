@@ -7,6 +7,7 @@ const authRouter = require("./auth/routeAuth.js");
 const infoRouter = require("./extra/routeInfo.js");
 const randomsRouter = require("./extra/routeRandoms.js");
 const randomsNumbRouter = require("./extra/routeRandomsNumb.js");
+console.log("hello world x2");
 const productosRouter = require("./products/routeProducts.js");
 const cartRouter = require("./cart/routeCart.js");
 const testRouter = require("./extra/routeTest.js");
