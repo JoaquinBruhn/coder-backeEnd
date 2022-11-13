@@ -15,15 +15,7 @@ cartRouter.get("/:id/productos", authenticationDB, async (req, res) => {
   }
 });
 
-cartRouter.get("/makepurchase", authenticationFetch, async (req, res) => {
-  try {
-    const result = await cartsDB.makePurchase(req.user.cart);
-    console.log(result);
-    res.json("Success, purchase completed");
-  } catch (error) {
-    console.log(error);
-  }
-});
+cartRouter.get("/makepurchase", authenticationFetch, CartController.makePurchase);
 
 cartRouter.post("/createnouser", async (req, res) => {
   try {

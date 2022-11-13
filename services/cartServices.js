@@ -11,6 +11,17 @@ class CartServices {
       console.log(error);
     }
   }
+
+  static async makePurchase(cart) {
+    try {
+      const purchase = await cartsDB.makePurchase(cart);
+      // await Comunications.informPurchase(req.user.username, req.user.phone, purchase)
+      console.log(purchase);
+      return "Success, purchase completed";
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 module.exports = CartServices;

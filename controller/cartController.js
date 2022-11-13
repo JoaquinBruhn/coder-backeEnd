@@ -3,12 +3,20 @@ const cartService = require("../services/cartServices.js");
 class CartController {
   static async addProduct(req, res) {
     try {
-      const userId = req.user._id;
-      const prodId = req.body.id;
-      const prodToAdd = await cartService.addProduct(userId, prodId);
+      const prodToAdd = await cartService.addProduct(req.user._id, req.body.id);
       res.json(`Success, ${prodToAdd.title} added to the cart.`);
     } catch (error) {
       res.json("error, product not added");
+    }
+  }
+
+  static async makePurchase(req, res) {
+    try {
+      const result = await cartService.makePurchase(req.user.cart);
+      // await Comunications.informPurchase(req.user.username, req.user.phone, purchase)
+      res.json(result);
+    } catch (error) {
+      console.log(error);
     }
   }
 }
