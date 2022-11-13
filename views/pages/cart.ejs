@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/CSS/style.css" />
+    <link rel="icon" href="data:;base64,=" />
+    <title>My cart</title>
+  </head>
+  <body>
+    <div class="container">
+    <table class="content-table">
+        <h1>My cart</h1>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>ID</th>
+            <th>Price</th>
+            <th>Thumbnail</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% cart.products.forEach((el)=>{ %>
+          <tr>
+            <td><%=el.title%></td>
+            <td><%=el._id%></td>
+            <td>$<%=el.price%></td>
+            <td><img src=<%=el.thumbnail%> alt=<%=el.thumbnail%>></td>
+            <td>
+                <button id=<%=el._id%> name=<%=cart._id%> class="remove-from-cart" >Remove from cart</button>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <br>
+      <% if(cart.products.length > 0){ %>
+      <button id="make-purchase" >Finish my purchase</button>
+      <br>
+      <% } %>
+      <a href="/">
+          <button>Back to the form</button>
+      </a>
+    </div>
+    <script>
+        let addToCart = document.getElementsByClassName("remove-from-cart");
+        let makePurchas = document.getElementById("make-purchase")
+        
+        if (addToCart) {
+        Array.from(addToCart).forEach((el) => {
+            el.addEventListener("click", async (e) => {
+                const data = { product: e.target.id, cart: e.target.name };
+                const result = await fetch(`/api/carrito/${data.cart}/productos/${data.product}`, {
+                    method: "delete"
+                });
+                if (result.ok) {
+                    alert(await result.json());
+                    window.location.reload();
+                } else {
+                    window.location.href = "/auth/logout";
+                }
+            });
+        });
+        }
+        
+        if (makePurchas) {
+            makePurchas.addEventListener("click", async(e)=>{
+                let result = await fetch("/api/carrito/makepurchase")
+                if (result.ok) {
+                    alert(await result.json());
+                    window.location.href = "/"
+                } else {
+                    window.location.href = "/auth/logout";
+            }
+            })
+        }
+        
+    </script>
+  </body>
+</html>

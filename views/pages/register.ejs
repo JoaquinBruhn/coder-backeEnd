@@ -6,23 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../CSS/style.css" />
     <link rel="icon" href="data:;base64,=">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
     <title>Table of products</title>
   </head>
   <body>
     <nav>
       <h2>Navbar</h2>
     </nav>
-    <div class="container">
+      <div class="container">
         <h1>REGISTER</h1>
         <br />
         <form
         class="form"
-        action="/auth/register"
         method="post"
-        role="form"
+        action="/auth/register"
+        enctype="multipart/form-data"
         autocomplete="off"
         >
-
         <div class="form-group">
             <input
             id="username"
@@ -33,7 +37,52 @@
             required
             />
         </div>
-
+        <div class="form-group">
+            <input
+            id="email"
+            name="email"
+            placeholder="email"
+            class="form-control"
+            type="email"
+            required
+            />
+        </div>
+        <div class="form-group">
+          <input
+          id="phone"
+          name="phone"
+          placeholder="phone"
+          class="form-control"
+          minlength="10"
+          type="tel"
+          required
+          />
+          <p
+          id="phonenumber"
+          name="phonenumber"
+          ></p>
+      </div>
+        <div class="form-group">
+            <input
+            id="age"
+            name="age"
+            placeholder="age"
+            class="form-control"
+            type="number"
+            min="18"
+            required
+            />
+        </div>
+        <div class="form-group">
+          <input
+          id="address"
+          name="address"
+          placeholder="address"
+          class="form-control"
+          type="text"
+          required
+          />
+        </div>
         <div class="form-group">
             <input
             id="password"
@@ -45,14 +94,17 @@
             />
         </div>
         <div class="form-group">
-            <input
-            id="direction"
-            name="direction"
-            placeholder="direction"
-            class="form-control"
-            type="text"
-            required
-            />
+          <p>Profile picture:</p>
+          <input
+          id="avatar"
+          name="avatar"
+          placeholder="avatar"
+          class="form-control"
+          type="file"
+          accept="image/jpeg"
+          required
+          />
+          <p>max size 2MB (only jpeg)</p>
         </div>
         <div class="form-group">
             <input class="btn btn-success my-3" type="submit" value="Register" />
@@ -64,7 +116,34 @@
             <button >To login</button>
           </a>
         </div>
+      </div>
     </div>
-    </div>
+    <script>
+      const phoneInputField = document.querySelector("#phone");
+      const phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript:
+          "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+      });
+      const phone = document.querySelector("#phone")
+      const realPhone = document.querySelector("#phonenumber");
+
+      phone.addEventListener('change',(e)=> {
+        e.preventDefault();
+          const phoneNumber = phoneInput.getNumber();
+          realPhone.innerHTML = phoneNumber + " (check that country code is applied)"
+          phone.value = phoneNumber
+      })
+
+      
+      var uploadField = document.getElementById("file");
+
+      uploadField.onchange = function() {
+          if(this.files[0].size > 2097152){
+            alert("File is too big!");
+            this.value = "";
+          };
+      };
+
+    </script>
   </body>
 </html>

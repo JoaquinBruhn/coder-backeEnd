@@ -4,23 +4,31 @@ const User = require("../../modals/user.js");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const { auth } = require("firebase-admin");
+const upload = require("../../middlewares/multer/multerSingle");
 const authRouter = new Router();
+const { cartsDB } = require("../../daos/index.js");
 
 authRouter.get("/register", (req, res) => {
   res.render("pages/register");
 });
 
-authRouter.post("/register", (req, res) => {
-  const { username, password, direction } = req.body;
+authRouter.post("/register", upload.single("avatar"), (req, res) => {
+  const { username, email, phone, age, address, password } = req.body;
+  console.log(req.file);
   User.findOne({ username }, async (err, user) => {
     if (err) console.log(err);
     if (user) res.render("pages/register-error");
     if (!user) {
       const hashedPassword = await bcrypt.hash(password, 10);
+      const cartID = await cartsDB.createCart();
       const newUser = new User({
         username,
+        email,
+        phone,
+        age,
+        address,
         password: hashedPassword,
-        direction,
+        cart: cartID._id,
       });
       await newUser.save();
       res.redirect("/auth/login");

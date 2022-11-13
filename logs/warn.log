@@ -12,3 +12,12 @@
 [2022-10-28T22:03:28.462] [WARN] notFound - WARNING, route "/api/productos631f71802b77192bb3f950c7" does not exist
 [2022-10-28T22:03:28.687] [WARN] notFound - WARNING, route "/favicon.ico" does not exist
 [2022-10-28T22:03:34.044] [WARN] notFound - WARNING, route "/favicon.ico" does not exist
+[2022-11-12T13:56:33.721] [WARN] notFound - WARNING, route "/images/joaco" does not exist
+[2022-11-12T13:56:42.755] [WARN] notFound - WARNING, route "/images/joaco.png" does not exist
+[2022-11-13T15:17:55.868] [WARN] notFound - WARNING, route "/api/carrito/CSS/style.css" does not exist
+[2022-11-13T15:19:09.732] [WARN] notFound - WARNING, route "/api/carrito/CSS/style.css" does not exist
+[2022-11-13T18:26:20.340] [WARN] notFound - WARNING, route "/api/carrito/636fdf7d6865ad6307b4ad00/productos/631f8e34cf156488902b752f?Goma+de+borrar=" does not exist
+[2022-11-13T18:29:35.788] [WARN] notFound - WARNING, route "/api/carrito/636fdf7d6865ad6307b4ad00/productos/631f8e34cf156488902b752f?Goma+de+borrar=" does not exist
+[2022-11-13T18:30:29.923] [WARN] notFound - WARNING, route "/api/carrito/636fdf7d6865ad6307b4ad00/productos/631f8e34cf156488902b752f?" does not exist
+[2022-11-13T18:30:52.525] [WARN] notFound - WARNING, route "/api/carrito/636fdf7d6865ad6307b4ad00/productos/631f8e34cf156488902b752f?" does not exist
+[2022-11-13T18:31:55.203] [WARN] notFound - WARNING, route "/api/carrito/636fdf7d6865ad6307b4ad00/productos/631f72b4cd68eafe3738fe2b?" does not exist

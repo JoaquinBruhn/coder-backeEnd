@@ -19,6 +19,19 @@ class MongodbDaoCarts extends MongodbContainer {
     }
   }
 
+  async makePurchase(cartId) {
+    try {
+      const purchase = await this.schema.findById(cartId, { products: 1 });
+      await this.schema.findByIdAndUpdate(cartId, {
+        products: [],
+        timestamp: timestamp(),
+      });
+      return purchase.products;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async createCart() {
     try {
       const time = timestamp();
@@ -37,8 +50,8 @@ class MongodbDaoCarts extends MongodbContainer {
       if (prodToAdd) {
         await this.schema.findByIdAndUpdate(cartId, { $push: { products: prodToAdd } });
         const cartSearcher = new MongodbContainer(Cart);
-        const updatedCart = await cartSearcher.getById(cartId);
-        return updatedCart;
+        await cartSearcher.getById(cartId);
+        return prodToAdd;
       } else {
         throw new Object({ error: "Product does not exist" });
       }
@@ -49,18 +62,14 @@ class MongodbDaoCarts extends MongodbContainer {
 
   async removeProduct(cartId, prodId) {
     try {
-      const currentCart = await this.schema.find();
-      console.log(currentCart);
-      const indexCart = currentCart.findIndex((el) => el._id == cartId);
-      const indexProduct = currentCart[indexCart].products.findIndex((el) => el._id == prodId);
-      currentCart[indexCart].products.splice(indexProduct, 1);
-      console.log(indexProduct);
+      const currentCart = await this.schema.findById(cartId);
+      const indexProduct = currentCart.products.findIndex((el) => el._id == prodId);
+      currentCart.products.splice(indexProduct, 1);
       await this.schema.findByIdAndUpdate(cartId, {
-        products: currentCart[indexCart].products,
+        products: currentCart.products,
         timestamp: timestamp(),
       });
-
-      return currentCart[indexCart];
+      return "Success, product removed";
     } catch (error) {
       console.log(error);
     }

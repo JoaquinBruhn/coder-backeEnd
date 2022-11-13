@@ -1,3 +1,4 @@
+<h1>Products</h1>
 <table class="content-table">
   <thead>
     <tr>
@@ -16,9 +17,7 @@
       <td>$<%=el.price%></td>
       <td><img src=<%=el.thumbnail%> alt=<%=el.thumbnail%>></td>
       <td>
-        <a href=<%="./api/productos/"+ el.id%>>
-            <button>Go to product</button>
-        </a>
+        <button id="<%=el.id%>" name="<%=el.title%>"  class="add-to-cart">Add to cart</button>
     </td>
     </tr>
     <% }) %>

@@ -5,7 +5,6 @@ let chatSMT = document.getElementById("chatbox");
 
 // {{PRODUCT LIST}} client listener
 socket.on("product-load", (products) => {
-  console.log(products);
   fetch("partials/allProducts.ejs")
     .then((r) => r.text())
     .then((partial) => {
@@ -15,12 +14,29 @@ socket.on("product-load", (products) => {
     })
     .then((html) => {
       document.getElementById("product-list").innerHTML = html;
+      let addToCart = document.getElementsByClassName("add-to-cart");
+      Array.from(addToCart).forEach((el) => {
+        el.addEventListener("click", async (e) => {
+          const data = { id: e.target.id, name: e.target.name };
+          const result = await fetch("/api/carrito", {
+            method: "post",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          });
+          if (result.ok) {
+            alert(await result.json());
+          } else {
+            window.location.href = "/auth/logout";
+          }
+        });
+      });
     });
 });
 
 // {{CHAT}} client listenerthe
 socket.on("chat-load", (chat) => {
-  console.log(chat);
   fetch("partials/chatroom.ejs")
     .then((r) => r.text())
     .then((partial) => {

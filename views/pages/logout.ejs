@@ -13,7 +13,11 @@
       <h2>Navbar</h2>
     </nav>
     <div class="container">
+      <% if(data){ %>
       <h1>Goodbye <%=data.username%></h1>
+      <% } else { %>
+      <h1>User session timeout.</h1>
+      <% } %>
     </div>
   </body>
   <script>
