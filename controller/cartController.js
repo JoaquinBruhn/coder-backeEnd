@@ -12,7 +12,7 @@ class CartController {
 
   static async makePurchase(req, res) {
     try {
-      const result = await cartService.makePurchase(req.user.cart);
+      const result = await cartService.makePurchase(req.user);
       // await Comunications.informPurchase(req.user.username, req.user.phone, purchase)
       res.json(result);
     } catch (error) {

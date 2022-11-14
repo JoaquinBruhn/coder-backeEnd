@@ -1,5 +1,6 @@
-const mongodbDaoUsers = require("../daos/users/mongodbDaoUsers.js");
 const { cartsDB } = require("../daos/index.js");
+const mongodbDaoUsers = require("../daos/users/mongodbDaoUsers.js");
+const Comunications = require("./comunications.js");
 
 class CartServices {
   static async addProduct(userId, prodId) {
@@ -12,11 +13,10 @@ class CartServices {
     }
   }
 
-  static async makePurchase(cart) {
+  static async makePurchase(userData) {
     try {
-      const purchase = await cartsDB.makePurchase(cart);
-      // await Comunications.informPurchase(req.user.username, req.user.phone, purchase)
-      console.log(purchase);
+      const purchase = await cartsDB.makePurchase(userData.cart);
+      await Comunications.informPurchase(userData.username, userData.email, userData.phone, purchase);
       return "Success, purchase completed";
     } catch (error) {
       console.log(error);

@@ -1,12 +1,13 @@
 const express = require("express");
 const { Router } = express;
-const User = require("../../modals/user.js");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const { auth } = require("firebase-admin");
-const upload = require("../../middlewares/multer/multerSingle");
 const authRouter = new Router();
+const User = require("../../modals/user.js");
 const { cartsDB } = require("../../daos/index.js");
+const upload = require("../../middlewares/multer/multerSingle.js");
+const Comunications = require("../../services/comunications.js");
 
 authRouter.get("/register", (req, res) => {
   res.render("pages/register");
@@ -14,7 +15,6 @@ authRouter.get("/register", (req, res) => {
 
 authRouter.post("/register", upload.single("avatar"), (req, res) => {
   const { username, email, phone, age, address, password } = req.body;
-  console.log(req.file);
   User.findOne({ username }, async (err, user) => {
     if (err) console.log(err);
     if (user) res.render("pages/register-error");
@@ -31,6 +31,7 @@ authRouter.post("/register", upload.single("avatar"), (req, res) => {
         cart: cartID._id,
       });
       await newUser.save();
+      await Comunications.sendAdminMail(newUser);
       res.redirect("/auth/login");
     }
   });
