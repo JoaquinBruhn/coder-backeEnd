@@ -2,6 +2,7 @@ const express = require("express");
 const { Router } = express;
 const { authenticationDB } = require("../../middlewares/mongoAtlas/authenticate");
 const User = require("../../modals/user.js");
+const { loggerApiError } = require("../../middlewares/log4js/class32.js");
 
 const routeUserInfo = new Router();
 
@@ -11,7 +12,7 @@ routeUserInfo.get("/", authenticationDB, async (req, res) => {
     const { _id, password, ...userInfo } = userData.toObject({ versionKey: false });
     res.render("pages/userInfo", { userInfo: userInfo });
   } catch (error) {
-    console.log(error);
+    loggerApiError.error("there has been an error", "n/", error);
   }
 });
 

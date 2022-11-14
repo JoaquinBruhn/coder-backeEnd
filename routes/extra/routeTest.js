@@ -1,16 +1,20 @@
 const express = require("express");
 const { Router } = express;
 const testRouter = new Router();
+const { loggerApiError } = require("../../middlewares/log4js/class32.js");
 
 let str = "";
 
 testRouter.get("/", (req, res) => {
-  console.log(req.url);
-  for (let i = 0; i < 1000; i++) {
-    str += "Hola que tal? ";
-  }
+  try {
+    for (let i = 0; i < 1000; i++) {
+      str += "Hola que tal? ";
+    }
 
-  res.send(str);
+    res.send(str);
+  } catch (error) {
+    loggerApiError.error("there has been an error", "n/", error);
+  }
 });
 
 module.exports = testRouter;

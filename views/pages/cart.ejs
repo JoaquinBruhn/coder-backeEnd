@@ -9,6 +9,15 @@
     <title>My cart</title>
   </head>
   <body>
+    <!-- <script>
+      function totalPrice(arr){
+        let price
+          arr.map((el)=>{
+            price =+ el.price
+          })
+          return price
+      }
+    </script> -->
     <div class="container">
     <table class="content-table">
         <h1>My cart</h1>
@@ -35,6 +44,8 @@
           <% }) %>
         </tbody>
       </table>
+      <br>  
+        <h3 id="totalPrice">Total: $<%=totalPrice %></h3>
       <br>
       <% if(cart.products.length > 0){ %>
       <button id="make-purchase" >Finish my purchase</button>
@@ -76,7 +87,6 @@
             }
             })
         }
-        
     </script>
   </body>
 </html>

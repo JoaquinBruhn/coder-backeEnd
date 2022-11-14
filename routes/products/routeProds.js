@@ -11,7 +11,7 @@ productosRouter.get("/", async (req, res) => {
     res.render("pages/allProducts", { prod });
     // res.json(prod);
   } catch (error) {
-    loggerApiError.error("there has been an error", "n/", `${error}`);
+    loggerApiError.error("there has been an error", "n/", error);
   }
 });
 productosRouter.get("/:id", async (req, res) => {
@@ -20,7 +20,7 @@ productosRouter.get("/:id", async (req, res) => {
     // res.render("pages/products", prod);
     res.json(prod);
   } catch (error) {
-    loggerApiError.error("there has been an error", "n/", `${error}`);
+    loggerApiError.error("there has been an error", "n/", error);
   }
 });
 
@@ -31,7 +31,7 @@ productosRouter.post("/", async (req, res) => {
       // res.render("pages/products", prod);
       res.json(prod);
     } catch (error) {
-      loggerApiError.error("there has been an error", "n/", `${error}`);
+      loggerApiError.error("there has been an error", "n/", error);
     }
   } else {
     res.json({ error: -1, descripcion: "route '/' method 'POST' unauthorized" });
@@ -45,7 +45,7 @@ productosRouter.put("/:id", async (req, res) => {
       // res.render("pages/products", prod);
       res.json(prod);
     } catch (error) {
-      loggerApiError.error("there has been an error", "n/", `${error}`);
+      loggerApiError.error("there has been an error", "n/", error);
     }
   } else {
     res.json({ error: -1, descripcion: "route '/req.params.id' method 'PUT' unauthorized" });
@@ -58,7 +58,7 @@ productosRouter.delete("/", async (req, res) => {
       const prod = await prodsDB.deleteAll();
       res.json(prod);
     } catch (error) {
-      loggerApiError.error("there has been an error", "n/", `${error}`);
+      loggerApiError.error("there has been an error", "n/", error);
     }
   } else {
     res.json({ error: -1, descripcion: `route '/${req.params.id}' method 'DELETE' unauthorized` });
@@ -71,7 +71,7 @@ productosRouter.delete("/:id", async (req, res) => {
       const prod = await prodsDB.deleteById(req.params.id);
       res.json(prod);
     } catch (error) {
-      loggerApiError.error("there has been an error", "n/", `${error}`);
+      loggerApiError.error("there has been an error", "n/", error);
     }
   } else {
     res.json({ error: -1, descripcion: `route '/${req.params.id}' method 'DELETE' unauthorized` });

@@ -8,6 +8,7 @@ const nodem_email = process.env.NODEMAILER_EMAIL;
 const nodem_pass = process.env.NODEMAILER_PASS;
 
 const { createTransport } = require("nodemailer");
+const { loggerApiError, loggerDefault } = require("../middlewares/log4js/class32.js");
 
 const transporter = createTransport({
   // service: "gmail",
@@ -29,9 +30,9 @@ class Comunications {
         html: `<h1>${registerData.username}</h1><h4>Email: ${registerData.email}</h4><h4>Phone number: ${registerData.phone}</h4><h4>Age: ${registerData.age}</h4><h4>Address: ${registerData.address}</h4><h4>Cart ID: ${registerData.cart}</h4>`,
       };
       const info = await transporter.sendMail(emailContent);
-      console.log(info);
+      loggerDefault.info("Email data:", "n/", info);
     } catch (error) {
-      console.log(error);
+      loggerApiError.error("there has been an error", "n/", error);
     }
   }
 
@@ -49,12 +50,12 @@ class Comunications {
         html: purchaseList,
       };
       const info = await transporter.sendMail(emailContent);
-
+      loggerDefault.info("Email data:", "n/", info);
       client.messages
         .create({ body: `Hello, ${userName} your purchase is being processed.`, from: twilioPhone, to: userPhone })
         .then((message) => console.log(message.sid));
     } catch (error) {
-      console.log(error);
+      loggerApiError.error("there has been an error", "n/", error);
     }
   }
 }
