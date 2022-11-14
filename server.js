@@ -20,10 +20,11 @@ const localStrategy = Strategy;
 const minimist = require("minimist");
 const compression = require("compression");
 const cluster = require("cluster");
+const localServer = process.env.LOCAL_SERVER;
 
 const { loggerDefault } = require("./middlewares/log4js/class32");
 
-if (cluster.isPrimary) {
+if (cluster.isPrimary && localServer) {
   const numCPUs = require("os").cpus().length;
   loggerDefault.info(`Primary ${process.pid} is running`);
   for (let i = 0; i < numCPUs; i++) {
