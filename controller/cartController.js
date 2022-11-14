@@ -30,7 +30,7 @@ class CartController {
       const result = await cartService.makePurchase(req.user);
       res.json(result);
     } catch (error) {
-      loggerApiError.error("there has been an error", "n/", `${error}`);
+      loggerApiError.error("there has been an error", "n/", error);
     }
   }
 

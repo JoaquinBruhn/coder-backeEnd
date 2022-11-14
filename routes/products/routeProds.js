@@ -1,80 +1,19 @@
 const express = require("express");
 const { Router } = express;
-const admin = require("../../configs/adminController.js");
 const productosRouter = new Router();
-const { prodsDB } = require("../../daos/index.js");
-const { loggerApiError } = require("../../middlewares/log4js/class32.js");
+const { authenticationAdmin } = require("../../middlewares/mongoAtlas/authenticate.js");
+const ProductsController = require("../../controller/productsController.js");
 
-productosRouter.get("/", async (req, res) => {
-  try {
-    const prod = await prodsDB.getAll();
-    res.render("pages/allProducts", { prod });
-    // res.json(prod);
-  } catch (error) {
-    loggerApiError.error("there has been an error", "n/", error);
-  }
-});
-productosRouter.get("/:id", async (req, res) => {
-  try {
-    const prod = await prodsDB.getById(req.params.id);
-    // res.render("pages/products", prod);
-    res.json(prod);
-  } catch (error) {
-    loggerApiError.error("there has been an error", "n/", error);
-  }
-});
+productosRouter.get("/", ProductsController.getAllProducts);
 
-productosRouter.post("/", async (req, res) => {
-  if (admin) {
-    try {
-      const prod = await prodsDB.save(req.body);
-      // res.render("pages/products", prod);
-      res.json(prod);
-    } catch (error) {
-      loggerApiError.error("there has been an error", "n/", error);
-    }
-  } else {
-    res.json({ error: -1, descripcion: "route '/' method 'POST' unauthorized" });
-  }
-});
+productosRouter.get("/:id", ProductsController.getOneProduct);
 
-productosRouter.put("/:id", async (req, res) => {
-  if (admin) {
-    try {
-      const prod = await prodsDB.edit(req.params.id, req.body);
-      // res.render("pages/products", prod);
-      res.json(prod);
-    } catch (error) {
-      loggerApiError.error("there has been an error", "n/", error);
-    }
-  } else {
-    res.json({ error: -1, descripcion: "route '/req.params.id' method 'PUT' unauthorized" });
-  }
-});
+productosRouter.post("/", authenticationAdmin, ProductsController.saveNewProduct);
 
-productosRouter.delete("/", async (req, res) => {
-  if (admin) {
-    try {
-      const prod = await prodsDB.deleteAll();
-      res.json(prod);
-    } catch (error) {
-      loggerApiError.error("there has been an error", "n/", error);
-    }
-  } else {
-    res.json({ error: -1, descripcion: `route '/${req.params.id}' method 'DELETE' unauthorized` });
-  }
-});
+productosRouter.put("/:id", authenticationAdmin, ProductsController.EditProduct);
 
-productosRouter.delete("/:id", async (req, res) => {
-  if (admin) {
-    try {
-      const prod = await prodsDB.deleteById(req.params.id);
-      res.json(prod);
-    } catch (error) {
-      loggerApiError.error("there has been an error", "n/", error);
-    }
-  } else {
-    res.json({ error: -1, descripcion: `route '/${req.params.id}' method 'DELETE' unauthorized` });
-  }
-});
+productosRouter.delete("/:id", authenticationAdmin, ProductsController.deleteOneProduct);
+
+productosRouter.delete("/", authenticationAdmin, ProductsController.deleteAllProducts);
+
 module.exports = productosRouter;

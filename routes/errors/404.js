@@ -1,27 +1,14 @@
 const express = require("express");
 const { Router } = express;
 const notFoundError = Router();
-const { loggerDefault, loggerNotFound, loggerApiError } = require("../../middlewares/log4js/class32.js");
+const ErrorController = require("../../controller/errorController.js");
 
-notFoundError.use((req, res, next) => {
-  loggerNotFound.warn(`WARNING, route "${req.originalUrl}" does not exist`);
-  next();
-});
+notFoundError.get("*", ErrorController);
 
-notFoundError.get("*", (req, res) => {
-  res.json({ error: -2, descripcion: `ruta inexistente` });
-});
+notFoundError.post("*", ErrorController);
 
-notFoundError.post("*", (req, res) => {
-  res.json({ error: -2, descripcion: `ruta inexistente` });
-});
+notFoundError.delete("*", ErrorController);
 
-notFoundError.delete("*", (req, res) => {
-  res.json({ error: -2, descripcion: `ruta inexistente` });
-});
-
-notFoundError.put("*", (req, res) => {
-  res.json({ error: -2, descripcion: `ruta inexistente` });
-});
+notFoundError.put("*", ErrorController);
 
 module.exports = notFoundError;
