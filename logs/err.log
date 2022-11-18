@@ -1,1 +1,27 @@
 [2022-10-24T18:35:07.093] [ERROR] apiError - there has been an error n/ ReferenceError: prodsDB is not defined
+[2022-11-17T15:52:27.175] [ERROR] apiError - there has been an error n/ ReferenceError: prodsDB is not defined
+    at Function.addProduct (F:\programacion\coder-house\coder-backeEnd\services\cartServices.js:19:25)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async addProductToCart (F:\programacion\coder-house\coder-backeEnd\controller\cartController.js:39:25)
+[2022-11-17T15:52:56.248] [ERROR] apiError - there has been an error n/ ReferenceError: cartsDB is not defined
+    at MongodbDaoCarts.findByIdAndUpdateCart (F:\programacion\coder-house\coder-backeEnd\daos\carts\mongodbDaoCarts.js:66:5)
+    at Function.addProduct (F:\programacion\coder-house\coder-backeEnd\services\cartServices.js:21:23)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async addProductToCart (F:\programacion\coder-house\coder-backeEnd\controller\cartController.js:39:25)
+[2022-11-17T16:01:20.700] [ERROR] apiError - there has been an error n/ TypeError: cartsDB.findByIdAndEmptyCart is not a function
+    at Function.makePurchase (F:\programacion\coder-house\coder-backeEnd\services\cartServices.js:42:21)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async makePurchase (F:\programacion\coder-house\coder-backeEnd\controller\cartController.js:30:22)
+[2022-11-17T16:01:54.099] [ERROR] apiError - there has been an error n/ TypeError: purchase.map is not a function
+    at Function.informPurchase (F:\programacion\coder-house\coder-backeEnd\services\comunications.js:42:16)
+    at Function.makePurchase (F:\programacion\coder-house\coder-backeEnd\services\cartServices.js:43:27)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async makePurchase (F:\programacion\coder-house\coder-backeEnd\controller\cartController.js:30:22)
+[2022-11-17T16:02:57.412] [ERROR] apiError - there has been an error n/ TypeError: purchase.map is not a function
+    at Function.informPurchase (F:\programacion\coder-house\coder-backeEnd\services\comunications.js:42:16)
+    at Function.makePurchase (F:\programacion\coder-house\coder-backeEnd\services\cartServices.js:44:27)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async makePurchase (F:\programacion\coder-house\coder-backeEnd\controller\cartController.js:30:22)
+[2022-11-17T16:16:37.093] [ERROR] apiError - there has been an error n/ TypeError: cart.map is not a function
+    at getAllInCart (F:\programacion\coder-house\coder-backeEnd\controller\cartController.js:10:12)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
