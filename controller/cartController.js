@@ -1,5 +1,3 @@
-const cartService = require("../services/cartServices.js");
-const { cartsDB } = require("../daos/index.js");
 const { loggerApiError } = require("../middlewares/log4js/class32.js");
 const CartServices = require("../services/cartServices.js");
 

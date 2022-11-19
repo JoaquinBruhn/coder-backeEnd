@@ -1,10 +1,11 @@
 const { prodsDB } = require("../daos/index.js");
+const ProductServices = require("../services/productServices.js");
 const { loggerApiError } = require("../middlewares/log4js/class32.js");
 
 class ProductsController {
   static async getAllProducts(req, res) {
     try {
-      const prod = await prodsDB.getAll();
+      const prod = await ProductServices.getAllProducts();
       res.render("pages/allProducts", { prod });
     } catch (error) {
       loggerApiError.error("there has been an error", "n/", error);
@@ -13,7 +14,7 @@ class ProductsController {
 
   static async getOneProduct(req, res) {
     try {
-      const prod = await prodsDB.getById(req.params.id);
+      const prod = await ProductServices.getOneProduct(req.params.id);
       res.render("pages/products", prod);
     } catch (error) {
       loggerApiError.error("there has been an error", "n/", error);
@@ -22,7 +23,7 @@ class ProductsController {
 
   static async saveNewProduct(req, res) {
     try {
-      const prod = await prodsDB.save(req.body);
+      const prod = await ProductServices.saveNewProduct(req.body);
       res.render("pages/products", prod);
     } catch (error) {
       loggerApiError.error("there has been an error", "n/", error);
@@ -31,7 +32,7 @@ class ProductsController {
 
   static async EditProduct(req, res) {
     try {
-      const prod = await prodsDB.edit(req.params.id, req.body);
+      const prod = await ProductServices.EditProduct(req.params.id, req.body);
       res.render("pages/products", prod);
     } catch (error) {
       loggerApiError.error("there has been an error", "n/", error);
@@ -40,7 +41,7 @@ class ProductsController {
 
   static async deleteOneProduct(req, res) {
     try {
-      const prod = await prodsDB.deleteById(req.params.id);
+      const prod = await ProductServices.deleteOneProduct(req.params.id);
       res.json(prod);
     } catch (error) {
       loggerApiError.error("there has been an error", "n/", error);
@@ -49,7 +50,7 @@ class ProductsController {
 
   static async deleteAllProducts(req, res) {
     try {
-      const prod = await prodsDB.deleteAll();
+      const prod = await ProductServices.deleteAllProducts();
       res.json(prod);
     } catch (error) {
       loggerApiError.error("there has been an error", "n/", error);

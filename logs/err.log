@@ -25,3 +25,21 @@
 [2022-11-17T16:16:37.093] [ERROR] apiError - there has been an error n/ TypeError: cart.map is not a function
     at getAllInCart (F:\programacion\coder-house\coder-backeEnd\controller\cartController.js:10:12)
     at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[2022-11-19T15:14:17.041] [ERROR] apiError - there has been an error n/ MongooseError: Query was already executed: User.findOne({ username: 'joaco4' })
+    at model.Query._wrappedThunk [as _findOne] (F:\programacion\coder-house\coder-backeEnd\node_modules\mongoose\lib\helpers\query\wrapThunk.js:23:19)
+    at F:\programacion\coder-house\coder-backeEnd\node_modules\kareem\index.js:426:25
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _findOne] (F:\\programacion\\coder-house\\coder-backeEnd\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:27:28)\n' +
+    '    at F:\\programacion\\coder-house\\coder-backeEnd\\node_modules\\kareem\\index.js:426:25\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}
+[2022-11-19T15:20:22.446] [ERROR] apiError - there has been an error n/ MongooseError: Query was already executed: User.findOne({ username: 'joaco5' })
+    at model.Query._wrappedThunk [as _findOne] (F:\programacion\coder-house\coder-backeEnd\node_modules\mongoose\lib\helpers\query\wrapThunk.js:23:19)
+    at F:\programacion\coder-house\coder-backeEnd\node_modules\kareem\index.js:426:25
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _findOne] (F:\\programacion\\coder-house\\coder-backeEnd\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:27:28)\n' +
+    '    at F:\\programacion\\coder-house\\coder-backeEnd\\node_modules\\kareem\\index.js:426:25\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}
