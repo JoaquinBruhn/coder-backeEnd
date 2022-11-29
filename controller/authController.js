@@ -1,9 +1,5 @@
-const bcrypt = require("bcrypt");
-const User = require("../modals/user.js");
-const { cartsDB } = require("../daos/index.js");
 const AuthServices = require("../services/authServices.js");
 const { loggerApiError } = require("../middlewares/log4js/class32.js");
-const Comunications = require("../services/comunications.js");
 
 class AuthController {
   static async toRegister(req, res) {
@@ -16,27 +12,14 @@ class AuthController {
 
   static async registerNewUser(req, res) {
     try {
-      const { username, email, phone, age, address, password } = req.body;
-      User.findOne({ username }, async (error, user) => {
-        if (error) loggerApiError.error("there has been an error", "n/", error);
-        if (user) res.render("pages/register-error");
-        if (!user) {
-          const hashedPassword = await bcrypt.hash(password, 10);
-          const cartID = await cartsDB.createCart();
-          const newUser = new User({
-            username,
-            email,
-            phone,
-            age,
-            address,
-            password: hashedPassword,
-            cart: cartID._id,
-          });
-          await newUser.save();
-          await Comunications.sendAdminMail(newUser);
-          res.redirect("/auth/login");
-        }
-      });
+      let registerData;
+      registerData = await AuthServices.validateNewUser(req.body);
+      if (registerData) {
+        res.render("pages/register-error");
+      } else {
+        await AuthServices.saveNewUser(req.body);
+        res.redirect("/auth/login");
+      }
     } catch (error) {
       loggerApiError.error("there has been an error", "n/", error);
     }

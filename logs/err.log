@@ -43,3 +43,39 @@
     '    at F:\\programacion\\coder-house\\coder-backeEnd\\node_modules\\kareem\\index.js:426:25\n' +
     '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
 }
+[2022-11-29T15:46:08.239] [ERROR] apiError - there has been an error n/ MongooseError: Query was already executed: User.findOne({ username: 'joaco2' })
+    at model.Query._wrappedThunk [as _findOne] (C:\Users\joaquin\Desktop\programacion\coderBackend\node_modules\mongoose\lib\helpers\query\wrapThunk.js:23:19)
+    at C:\Users\joaquin\Desktop\programacion\coderBackend\node_modules\kareem\index.js:426:25
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _findOne] (C:\\Users\\joaquin\\Desktop\\programacion\\coderBackend\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:27:28)\n' +
+    '    at C:\\Users\\joaquin\\Desktop\\programacion\\coderBackend\\node_modules\\kareem\\index.js:426:25\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}
+[2022-11-29T15:48:29.804] [ERROR] apiError - there has been an error n/ MongooseError: Query was already executed: User.findOne({ username: 'joaco3' })
+    at model.Query._wrappedThunk [as _findOne] (C:\Users\joaquin\Desktop\programacion\coderBackend\node_modules\mongoose\lib\helpers\query\wrapThunk.js:23:19)
+    at C:\Users\joaquin\Desktop\programacion\coderBackend\node_modules\kareem\index.js:426:25
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _findOne] (C:\\Users\\joaquin\\Desktop\\programacion\\coderBackend\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:27:28)\n' +
+    '    at C:\\Users\\joaquin\\Desktop\\programacion\\coderBackend\\node_modules\\kareem\\index.js:426:25\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}
+[2022-11-29T16:48:50.867] [ERROR] apiError - there has been an error n/ MongooseError: Query was already executed: User.findOne({ username: 'joaco3' })
+    at model.Query._wrappedThunk [as _findOne] (C:\Users\joaquin\Desktop\programacion\coderBackend\node_modules\mongoose\lib\helpers\query\wrapThunk.js:23:19)
+    at C:\Users\joaquin\Desktop\programacion\coderBackend\node_modules\kareem\index.js:426:25
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _findOne] (C:\\Users\\joaquin\\Desktop\\programacion\\coderBackend\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:27:28)\n' +
+    '    at C:\\Users\\joaquin\\Desktop\\programacion\\coderBackend\\node_modules\\kareem\\index.js:426:25\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}
+[2022-11-29T16:55:13.190] [ERROR] apiError - there has been an error n/ MongooseError: Query was already executed: User.findOne({ username: 'joaco4' })
+    at model.Query._wrappedThunk [as _findOne] (C:\Users\joaquin\Desktop\programacion\coderBackend\node_modules\mongoose\lib\helpers\query\wrapThunk.js:23:19)
+    at C:\Users\joaquin\Desktop\programacion\coderBackend\node_modules\kareem\index.js:426:25
+    at processTicksAndRejections (node:internal/process/task_queues:78:11) {
+  originalStack: 'Error\n' +
+    '    at model.Query._wrappedThunk [as _findOne] (C:\\Users\\joaquin\\Desktop\\programacion\\coderBackend\\node_modules\\mongoose\\lib\\helpers\\query\\wrapThunk.js:27:28)\n' +
+    '    at C:\\Users\\joaquin\\Desktop\\programacion\\coderBackend\\node_modules\\kareem\\index.js:426:25\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:78:11)'
+}
